@@ -4,3 +4,16 @@ nav img {
 .navbar-nav > li > a {
 	line-height: 45px;
 }
+
+.navbar-brand{
+	min-width: 100px;
+}
+
+.navbar-brand {
+	padding: 5px;
+	margin-top: 11px;
+}
+
+.yamm-content{
+	background-color: #F8F8F8;
+}
