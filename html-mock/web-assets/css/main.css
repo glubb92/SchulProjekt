@@ -1,12 +1,13 @@
 nav img {
-	height: 100%;
+	height: 75px;
 }
 .navbar-nav > li > a {
-	line-height: 45px;
+	line-height: 70px;
+	font-size: 20px;
 }
 
 .navbar-brand{
-	min-width: 100px;
+	min-width: 150px;
 }
 
 .navbar-brand {
@@ -15,5 +16,65 @@ nav img {
 }
 
 .yamm-content{
-	background-color: #F8F8F8;
+	background-color: #9ABEDF !important;
+}
+
+.alibi-header{
+	height: 100px;
+}
+
+.submenu-list{
+	display:table;
+	width: 100%;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    table-layout:fixed;
+}
+
+.submenu-list > li{
+	display:table-cell;
+	width: 100%;
+}
+
+.btn-group-submenu{
+	width: 100%;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #555;
+  background-color: #9ABEDF !important;
+}
+
+/*
+*	CSS für Navbar on hover
+*/
+
+.btn-submenu{
+	background-color: transparent;
+	border: none;
+	display:table-cell;
+	font-size: 17px;
+	padding: 0px;
+}
+
+.btn-submenu:hover,.submenu-dropdown:hover .btn-submenu {
+	background-color: transparent;
+}
+
+.dropdown-toggle:hover  + .submenu-dropdown {
+    display: block;
+	background-color: #E5E5E5;
+}
+
+.submenu-dropdown:hover {
+    display: block;
+	background-color: #E5E5E5;
+}
+
+.submenu-dropdown{
+    margin: 0px;
+	width: 100px;
 }
