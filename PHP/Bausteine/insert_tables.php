@@ -19,7 +19,7 @@
 			
 			$sql = "INSERT INTO tbllieferant (Name, Strasse, PLZ, Ansprechpartner, URL) VALUES ('".$Name."','".$Strasse."','".$PLZ."','".$Ansprechpartner."','".$URL."')";
 			
-			return this->query($sql);
+			return $this->query($sql);
 		}
 
 		public function add_Raum($Bezeichung, $Notiz)
@@ -33,7 +33,7 @@
 			
 			$sql = "INSERT INTO tblraum (Bezeichnung, Notiz) VALUES ('".$Bezeichung."','".$Notiz."')";
 			
-			return this->query($sql);
+			return $this->query($sql);
 		}
 
 		public function add_Kompart($Bezeichung)
@@ -47,7 +47,7 @@
 			
 			$sql = "INSERT INTO tblkomponentenart (Bezeichnung) VALUES ('".$Bezeichung."')";
 			
-			return this->query($sql);
+			return $this->query($sql);
 		}
 		
 		public function add_Kompattribut($Bezeichung, $Einheit)
@@ -62,7 +62,7 @@
 			
 			$sql = "INSERT INTO tblkomponentenattribut (Bezeichnung, Einheit) VALUES ('".$Bezeichung."','".$Einheit."')";
 			
-			return this->query($sql);
+			return $this->query($sql);
 		}
 	}
 	

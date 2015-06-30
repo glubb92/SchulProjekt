@@ -18,11 +18,12 @@
 				return true;
 			}
 		}
-		public query($sql)
+		
+		public function query($sql)
 		{
 			if(!$this->openDB()){
 				return 'Connect Error: '.$this->myDB->connect_error;
-				}	
+			}	
 			$DB = $this->myDB;
 			if($DB->query($sql) == true)
 			{
@@ -30,8 +31,7 @@
 			}else{
 				return $DB->error;
 			}
-		}
-		
+		}	
 	}
 	
 	
