@@ -19,12 +19,13 @@
 			
 			$sql = "INSERT INTO tbllieferant (Name, Strasse, PLZ, Ansprechpartner, URL) VALUES ('".$Name."','".$Strasse."','".$PLZ."','".$Ansprechpartner."','".$URL."')";
 			
-			if($DB->query($sql) == true)
-			{
-				return true;
-			}else{
-				return $DB->error;
-			}
+			// if($DB->query($sql) == true)
+			// {
+				// return true;
+			// }else{
+				// return $DB->error;
+			// }
+			return this->query($sql);
 		}
 		//Fügt den Zimmer hin-zu
 		public function add_Raum($Bezeichung, $Notiz)

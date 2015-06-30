@@ -18,6 +18,20 @@
 				return true;
 			}
 		}
+		public query($sql)
+		{
+			if(!$this->openDB()){
+				return 'Connect Error: '.$DB->connect_error;
+				}	
+			$DB = $this->myDB;
+		if($DB->query($sql) == true)
+		{
+			return true;
+		}else{
+			return $DB->error;
+		}
+		}
+		
 	}
 	
 	
