@@ -142,38 +142,65 @@
 		</nav>
 		<section id="content">
 			<div class="row">
-				<h1 class="page-header" >Komponenten Name</div>
+				<h1 class="page-header" >Raum 001 IT-Labor</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-6">
+				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 					<div class="panel panel-default">
-						<div class="panel-heading overview-heading">Name</div>
-						<div class="panel-body">
-							ThinkCentre M Series
+						<div class="panel-heading" role="tab" id="headingOne">
+							<h4 class="panel-title">
+								<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+									Computer <span class="badge">25</span>
+								</a>
+							</h4>
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+							<div class="panel-body">
+								<ul>
+									<li><a href="#">ThinkCentre 10</a></li>
+									<li><a href="#">ThinkCentre 11</a></li>
+									<li><a href="#">ThinkCentre 12</a></li>
+									<li><a href="#">...</li>
+								</ul>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-xs-6">
 					<div class="panel panel-default">
-						<div class="panel-heading overview-heading">ID</div>
-						<div class="panel-body">
-							R001 PC11
+						<div class="panel-heading" role="tab" id="headingTwo">
+							<h4 class="panel-title">
+								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+									Bildschirm <span class="badge">25</span>
+								</a>
+							</h4>
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+							<div class="panel-body">
+								<ul>
+									<li><a href="#">iiyama 38</a></li>
+									<li><a href="#">iiyama 39</a></li>
+									<li><a href="#">iiyama 40</a></li>
+									<li><a href="#">...</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-xs-6">
-					<div class="panel panel-default">
-						<div class="panel-heading overview-heading">Beispiel</div>
-						<div class="panel-body">
-							Beispiel Text
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-6">
-					<div class="panel panel-default">
-						<div class="panel-heading overview-heading">Beispiel</div>
-						<div class="panel-body">
-							Beispiel Text
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingThree">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+										Maus <span class="badge">25</span>
+									</a>
+								</h4>
+							</div>
+						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+							<div class="panel-body">
+								<ul>
+									<li><a href="#">Lenovo</a></li>
+									<li><a href="#">Lenovo</a></li>
+									<li><a href="#">Lenovo</a></li>
+									<li><a href="#">...</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
