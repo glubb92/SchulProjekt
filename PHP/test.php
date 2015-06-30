@@ -1,9 +1,7 @@
 <?php
 
-if (!include("insert_tables.php"))
-{
-echo "fehler";
-}
+include"insert_tables.php";
+
 
 $add = new addDB();
 echo $add->openDB();

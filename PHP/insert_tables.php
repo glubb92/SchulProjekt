@@ -1,22 +1,9 @@
 <?php
-	class addDB
+	include"connect.php";
+	
+	class addDB extends connectDB
 	{
-		public $myDB;
-
-		public function openDB()
-		{
-			if (!isset($this->myDB))
-			{		
-				$this->myDB = new mysqli("localhost", "root", NULL, "dbproject");
-				if ($this->myDB->connect_error) {
-					return false;
-				}else{
-					return true;
-				}
-			}else{
-				return true;
-			}
-		}
+		
 		//Fügt den Lieferanten hin-zu
 		public function add_supplier($Name, $Strasse, $PLZ, $Ansprechpartner, $URL)
 		{
