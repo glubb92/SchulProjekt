@@ -3,12 +3,12 @@
 	
 	class addDB extends connectDB
 	{		
-		//Fügt den Lieferanten hin-zu
+	
 		public function add_supplier($Name, $Strasse, $PLZ, $Ansprechpartner, $URL)
 		{
 			
 			if(!$this->openDB()){
-				return 'Connect Error: '.$DB->connect_error;}	
+				return 'Connect Error: '.$this->myDB->connect_error;}	
 			$DB = $this->myDB;
 			
 			$Name = $DB->real_escape_string($Name);
@@ -19,20 +19,13 @@
 			
 			$sql = "INSERT INTO tbllieferant (Name, Strasse, PLZ, Ansprechpartner, URL) VALUES ('".$Name."','".$Strasse."','".$PLZ."','".$Ansprechpartner."','".$URL."')";
 			
-			// if($DB->query($sql) == true)
-			// {
-				// return true;
-			// }else{
-				// return $DB->error;
-			// }
 			return this->query($sql);
 		}
-		//Fügt den Zimmer hin-zu
+
 		public function add_Raum($Bezeichung, $Notiz)
 		{
-			
 			if(!$this->openDB()){
-				return 'Connect Error: '.$DB->connect_error;}	
+				return 'Connect Error: '.$this->myDB->connect_error;}	
 			$DB = $this->myDB;
 			
 			$Bezeichung = $DB->real_escape_string($Bezeichung);
@@ -40,38 +33,28 @@
 			
 			$sql = "INSERT INTO tblraum (Bezeichnung, Notiz) VALUES ('".$Bezeichung."','".$Notiz."')";
 			
-			if($DB->query($sql) == true)
-			{
-				return true;
-			}else{
-				return $DB->error;
-			}
+			return this->query($sql);
 		}
-		//Fügt den Komponentenart hinzu
+
 		public function add_Kompart($Bezeichung)
 		{
 			
 			if(!$this->openDB()){
-				return 'Connect Error: '.$DB->connect_error;}	
+				return 'Connect Error: '.$this->myDB->connect_error;}	
 			$DB = $this->myDB;
 			
 			$Bezeichung = $DB->real_escape_string($Bezeichung);
 			
 			$sql = "INSERT INTO tblkomponentenart (Bezeichnung) VALUES ('".$Bezeichung."')";
 			
-			if($DB->query($sql) == true)
-			{
-				return true;
-			}else{
-				return $DB->error;
-			}
+			return this->query($sql);
 		}
-		//Fügt den Komponentenart hinzu
+		
 		public function add_Kompattribut($Bezeichung, $Einheit)
 		{
 			
 			if(!$this->openDB()){
-				return 'Connect Error: '.$DB->connect_error;}	
+				return 'Connect Error: '.$this->myDB->connect_error;}	
 			$DB = $this->myDB;
 			
 			$Bezeichung = $DB->real_escape_string($Bezeichung);
@@ -79,12 +62,7 @@
 			
 			$sql = "INSERT INTO tblkomponentenattribut (Bezeichnung, Einheit) VALUES ('".$Bezeichung."','".$Einheit."')";
 			
-			if($DB->query($sql) == true)
-			{
-				return true;
-			}else{
-				return $DB->error;
-			}
+			return this->query($sql);
 		}
 	}
 	

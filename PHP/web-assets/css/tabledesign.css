@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+
+.zui-table {
+    border: solid 1px #09C;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: normal 13px Arial, sans-serif;
+}
+.zui-table thead th {
+    background-color: #09C;
+    border: solid 1px #09C;
+    color: #FFF;
+    padding: 10px;
+    text-align: left;
+	font-weight:bold;
+    /*text-shadow: 1px 1px 1px #fff;*/
+}
+.zui-table tbody td {
+    border: solid 1px #09C;
+    color: #333;
+    padding: 10px;
+    text-shadow: 1px 1px 1px #fff;
+}
+.zui-table-rounded {
+    border: none;
+}
+.zui-table-rounded thead th {
+    background-color: #09C;
+    border: none;
+	text-shadow: 1px 1px 1px #000;
+    color: #FFF;
+	font-weight:bold;
+}
+.zui-table-rounded thead th:first-child {
+    border-radius: 10px 0 0 0;
+}
+.zui-table-rounded thead th:last-child {
+    border-radius: 0 10px 0 0;
+}
+.zui-table-rounded tbody td {
+    border: none;
+    border-top: solid 1px #957030;
+    background-color: #CBE0F5;
+}
+.zui-table-rounded tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 10px;
+}
+.zui-table-rounded tbody tr:last-child td:last-child {
+    border-radius: 0 0 10px 0;
+}

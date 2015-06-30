@@ -21,15 +21,15 @@
 		public query($sql)
 		{
 			if(!$this->openDB()){
-				return 'Connect Error: '.$DB->connect_error;
+				return 'Connect Error: '.$this->myDB->connect_error;
 				}	
 			$DB = $this->myDB;
-		if($DB->query($sql) == true)
-		{
-			return true;
-		}else{
-			return $DB->error;
-		}
+			if($DB->query($sql) == true)
+			{
+				return true;
+			}else{
+				return $DB->error;
+			}
 		}
 		
 	}

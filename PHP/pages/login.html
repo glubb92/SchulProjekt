@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>B3 - IT - Verwaltung</title>
+	<link rel="stylesheet" href="../web-assets/css/bootstrap.css" >
+	<link rel="stylesheet" href="../web-assets/css/login.css" >
+	<link rel="stylesheet" href="../web-assets/yamm/yamm.css" >
+	<script src="../web-assets/js/jquery-2.1.4.min.js" ></script>
+	<script src="../web-assets/js/bootstrap.min.js" ></script>
+	<script src="../web-assets/js/main.js" ></script>
+</head>
+<body>
+	<header>
+		<img src="../web-assets/img/Logo-neu.png"/>
+	</header>
+	<content>
+		<form action="login.php" method="POST">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 col-sm-offset-4">
+				<b>Benutzer:</b><br/>
+					<input type="text" class="form-control login-form" placeholder="Benutzer" name="username" aria-describedby="basic-addon2">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 col-sm-offset-4">
+				<b>Passwort:</b><br/>
+					<input type="password" class="form-control login-form"  placeholder="Passwort" name="password" aria-describedby="basic-addon2">
+				
+				<input class="btn btn-login"  type="submit" name = "btSend" value = "LOGIN" >
+				</div>
+			</div>
+		</form>
+
+	</content>
+</body>
+</html>
