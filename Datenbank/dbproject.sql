@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 30. Jun 2015 um 08:19
+-- Erstellungszeit: 30. Jun 2015 um 09:47
 -- Server Version: 5.5.32
 -- PHP-Version: 5.4.19
 
@@ -70,8 +70,8 @@ CREATE TABLE IF NOT EXISTS `tblkomponent` (
 --
 
 INSERT INTO `tblkomponent` (`Komponent_ID`, `Lieferant_ID`, `Raum_ID`, `Art_ID`, `Hersteller`, `Notiz`, `Einkaufsdatum`, `Gewaehrleistungsdauer`) VALUES
-(1, 1, 1, 1, 'Chinaware', 'Deluxe', '2015-06-01', 3),
-(2, 2, 1, 2, 'Mercedes Benz', 'M3', '2015-06-01', 9999999);
+(1, 1, 1, 1, 'Chinaware', 'PC01', '2015-06-01', 3),
+(2, 2, 1, 2, 'Mercedes Benz', 'PC02', '2015-06-01', 9999999);
 
 -- --------------------------------------------------------
 
@@ -168,20 +168,20 @@ INSERT INTO `tblraum` (`Raum_ID`, `Bezeichnung`, `Notiz`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `tblvorgansart`
+-- Tabellenstruktur für Tabelle `tblvorgangsart`
 --
 
-CREATE TABLE IF NOT EXISTS `tblvorgansart` (
+CREATE TABLE IF NOT EXISTS `tblvorgangsart` (
   `Vorgang_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Bezeichnung` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Vorgang_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Daten für Tabelle `tblvorgansart`
+-- Daten für Tabelle `tblvorgangsart`
 --
 
-INSERT INTO `tblvorgansart` (`Vorgang_ID`, `Bezeichnung`) VALUES
+INSERT INTO `tblvorgangsart` (`Vorgang_ID`, `Bezeichnung`) VALUES
 (1, 'Einbau'),
 (2, 'Ausbau'),
 (3, 'Reperatur'),
@@ -302,7 +302,7 @@ ALTER TABLE `tblzuordnung_attr_komp`
 --
 ALTER TABLE `tblzuordnung_komp_vorgang`
   ADD CONSTRAINT `fk_tblKomponent_has_tblVorgansart_tblKomponent1` FOREIGN KEY (`Komponent_ID`) REFERENCES `tblkomponent` (`Komponent_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_tblKomponent_has_tblVorgansart_tblVorgansart1` FOREIGN KEY (`Vorgang_ID`) REFERENCES `tblvorgansart` (`Vorgang_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_tblKomponent_has_tblVorgansart_tblVorgansart1` FOREIGN KEY (`Vorgang_ID`) REFERENCES `tblvorgangsart` (`Vorgang_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_tblZuordnung_Komp_Vorgang_tblKomponent1` FOREIGN KEY (`Teilkomponenten_ID`) REFERENCES `tblkomponent` (`Komponent_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
