@@ -13,21 +13,23 @@
 		<img src="../web-assets/img/Logo-neu.png"/>
 	</header>
 	<content>
-		<form>
+		<form action="../../PHP/login.php" method="POST">
 			<div class="row">
 				<div class="col-xs-12 col-sm-4 col-sm-offset-4">
 				<b>Benutzer:</b><br/>
-					<input type="text" class="form-control login-form" placeholder="Benutzer" aria-describedby="basic-addon2">
+					<input type="text" class="form-control login-form" placeholder="Benutzer" name="username" aria-describedby="basic-addon2">
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-12 col-sm-4 col-sm-offset-4">
 				<b>Passwort:</b><br/>
-					<input type="password" class="form-control login-form" placeholder="Passwort" aria-describedby="basic-addon2">
-				<button class="btn btn-login" onclick="">LOGIN</button>
+					<input type="password" class="form-control login-form"  placeholder="Passwort" name="password" aria-describedby="basic-addon2">
+				
+				<input class="btn btn-login"  type="submit" name = "btSend" value = "LOGIN" >
 				</div>
 			</div>
 		</form>
+
 	</content>
 </body>
 </html>
