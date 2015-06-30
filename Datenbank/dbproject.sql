@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 30. Jun 2015 um 09:47
+-- Erstellungszeit: 30. Jun 2015 um 10:28
 -- Server Version: 5.5.32
 -- PHP-Version: 5.4.19
 
@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `tblkomponent` (
   `Raum_ID` int(11) NOT NULL,
   `Art_ID` int(11) NOT NULL,
   `Hersteller` varchar(45) DEFAULT NULL,
+  `Bezeichnung` varchar(50) NOT NULL,
   `Notiz` varchar(45) DEFAULT NULL,
   `Einkaufsdatum` date DEFAULT NULL,
   `Gewaehrleistungsdauer` int(11) DEFAULT NULL,
@@ -63,15 +64,23 @@ CREATE TABLE IF NOT EXISTS `tblkomponent` (
   KEY `fk_tblKomponent_tblLieferant_idx` (`Lieferant_ID`),
   KEY `fk_tblKomponent_tblRaum1_idx` (`Raum_ID`),
   KEY `fk_tblKomponent_tblKomponentenart1_idx` (`Art_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Daten für Tabelle `tblkomponent`
 --
 
-INSERT INTO `tblkomponent` (`Komponent_ID`, `Lieferant_ID`, `Raum_ID`, `Art_ID`, `Hersteller`, `Notiz`, `Einkaufsdatum`, `Gewaehrleistungsdauer`) VALUES
-(1, 1, 1, 1, 'Chinaware', 'PC01', '2015-06-01', 3),
-(2, 2, 1, 2, 'Mercedes Benz', 'PC02', '2015-06-01', 9999999);
+INSERT INTO `tblkomponent` (`Komponent_ID`, `Lieferant_ID`, `Raum_ID`, `Art_ID`, `Hersteller`, `Bezeichnung`, `Notiz`, `Einkaufsdatum`, `Gewaehrleistungsdauer`) VALUES
+(1, 1, 1, 1, 'Chinaware', 'PC01', '', '2015-06-01', 3),
+(2, 2, 1, 2, 'Mercedes Benz', 'Leuchtteil', '', '2015-06-01', 9999999),
+(3, 1, 1, 1, 'Chinaware', 'PC02', '', NULL, NULL),
+(4, 1, 2, 1, 'Mercedes Benz', 'PC01', '', NULL, NULL),
+(5, 1, 1, 1, 'Chinaware', 'PC04', '', NULL, NULL),
+(6, 1, 1, 1, 'Mercedes Benz', 'PC05', '', NULL, NULL),
+(7, 1, 1, 5, 'Chinaware', 'SAP', NULL, NULL, NULL),
+(8, 1, 1, 5, 'Mercedes Benz', 'SAP', NULL, NULL, NULL),
+(9, 1, 1, 5, 'keiner', 'SAP', NULL, NULL, NULL),
+(10, 1, 1, 5, 'keiner', 'SAP', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -83,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `tblkomponentenart` (
   `Art_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Bezeichnung` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Art_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Daten für Tabelle `tblkomponentenart`
@@ -93,7 +102,8 @@ INSERT INTO `tblkomponentenart` (`Art_ID`, `Bezeichnung`) VALUES
 (1, 'Computer'),
 (2, 'Beamer'),
 (3, 'Drucker'),
-(4, 'Dokumentenkamera');
+(4, 'Dokumentenkamera'),
+(5, 'Software');
 
 -- --------------------------------------------------------
 
@@ -106,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `tblkomponentenattribut` (
   `Bezeichnung` varchar(45) DEFAULT NULL,
   `Einheit` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Attribut_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Daten für Tabelle `tblkomponentenattribut`
@@ -116,7 +126,8 @@ INSERT INTO `tblkomponentenattribut` (`Attribut_ID`, `Bezeichnung`, `Einheit`) V
 (1, 'Leistung', 'Watt'),
 (2, 'Spannung', 'Volt'),
 (3, 'Arbeitsspeicher', 'Megabyte'),
-(4, 'Volumen', 'Gigabyte');
+(4, 'Volumen', 'Gigabyte'),
+(5, 'Name', NULL);
 
 -- --------------------------------------------------------
 
@@ -153,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `tblraum` (
   `Bezeichnung` varchar(45) DEFAULT NULL,
   `Notiz` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Raum_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Daten für Tabelle `tblraum`
@@ -163,7 +174,9 @@ INSERT INTO `tblraum` (`Raum_ID`, `Bezeichnung`, `Notiz`) VALUES
 (1, '001', 'IT Labor 1'),
 (2, '002', 'IT Labor 2'),
 (3, '106', 'Klassenzimmer'),
-(4, '666', 'Schulungsraum');
+(4, '666', 'Schulungsraum'),
+(5, '003', 'Kein IT Labor'),
+(6, '004', 'Ein random raum');
 
 -- --------------------------------------------------------
 
@@ -175,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `tblvorgangsart` (
   `Vorgang_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Bezeichnung` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Vorgang_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Daten für Tabelle `tblvorgangsart`
@@ -185,7 +198,9 @@ INSERT INTO `tblvorgangsart` (`Vorgang_ID`, `Bezeichnung`) VALUES
 (1, 'Einbau'),
 (2, 'Ausbau'),
 (3, 'Reperatur'),
-(4, 'Neubeschaffung');
+(4, 'Neubeschaffung'),
+(5, 'Installation'),
+(6, 'Deinstallation');
 
 -- --------------------------------------------------------
 
@@ -264,6 +279,16 @@ CREATE TABLE IF NOT EXISTS `tblzuordnung_komp_vorgang` (
   KEY `fk_tblKomponent_has_tblVorgansart_tblKomponent1_idx` (`Komponent_ID`),
   KEY `fk_tblZuordnung_Komp_Vorgang_tblKomponent1_idx` (`Teilkomponenten_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Daten für Tabelle `tblzuordnung_komp_vorgang`
+--
+
+INSERT INTO `tblzuordnung_komp_vorgang` (`Komponent_ID`, `Vorgang_ID`, `Datum`, `Teilkomponenten_ID`) VALUES
+(1, 5, '2015-06-02', 7),
+(3, 5, '2015-06-02', 8),
+(5, 5, '2015-06-02', 9),
+(6, 5, '2015-06-02', 10);
 
 --
 -- Constraints der exportierten Tabellen
