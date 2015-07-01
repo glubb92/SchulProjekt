@@ -28,16 +28,18 @@
 		
 		
 		echo"<table class='zui-table zui-table-rounded' >";
-		echo"<thead><tr><th>Name</th><th>Straße</th><th>PLZ</th><th>Ansprechpartner</th><th>URL</th></tr></thead><tbody>";
+		echo"<thead><tr><th>ID</th><th>Name</th><th>Straße</th><th>PLZ</th><th>Ansprechpartner</th><th>URL</th><th></th></tr></thead><tbody>";
 		while ($row = $res->fetch_array())
 		{
-			echo "<tr>";
-			echo "<td>".$row['Name']."</td>";
-			echo "<td>".$row['Strasse']."</td>";
-			echo "<td>".$row['PLZ']."</td>";
-			echo "<td>".$row['Ansprechpartner']."</td>";
-			echo "<td><a href='".$row['URL']."'>".$row['URL']."</a></td>";
-			echo "</tr>";
+			echo "<tr><form method='POST' action='Lieferanten_Neu.php'>";
+			echo "<td><input type='hidden' name='id' value='".$row['Lieferant_ID']."'>".$row['Lieferant_ID']."</input></td>";
+			echo "<td><input type='hidden' name='name' value='".$row['Name']."'>".$row['Name']."</input></td>";	
+			echo "<td><input type='hidden' name='strasse' value='".$row['Strasse']."'>".$row['Strasse']."</input></td>";
+			echo "<td><input type='hidden' name='PLZ' value='".$row['PLZ']."'>".$row['PLZ']."</input></td>";
+			echo "<td><input type='hidden' name='ansprechpartner' value='".$row['Ansprechpartner']."' >".$row['Ansprechpartner']."</input></td>";
+			echo "<td><a href='".$row['URL']."'><input type='hidden' name='url' value='".$row['URL']."' >".$row['URL']."</input></a></td>";
+			echo "<td><input type='submit' name='edit' value='Bearbeiten'></td>";
+			echo "</form></tr>";
 		}
 		echo"</tbody></table>";
 	} else{

@@ -6,7 +6,7 @@
 		<title>IT-Verwaltung</title>
 		<link rel='stylesheet' href='../web-assets/css/bootstrap.css' >
 		<link rel='stylesheet' href='../web-assets/css/main.css' >
-		<link rel='stylesheet' href='../web-assets/yamm/yamm.css' >
+		<link rel='stylesheet' href='../web-assets/yamm/yamm.css' >s
 		<link rel="stylesheet" type="text/css" href="../web-assets/css/tabledesign.css" />
 		<script src='../web-assets/js/jquery-2.1.4.min.js' ></script>
 		<script src='../web-assets/js/bootstrap.min.js' ></script>

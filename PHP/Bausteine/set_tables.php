@@ -1,5 +1,5 @@
 <?php
-include"connect.php";
+include_once "connect.php";
 
 class setDB extends connectDB
 {	
@@ -9,14 +9,14 @@ class setDB extends connectDB
 		if($ID != 0)
 		{
 			$Query = "UPDATE tblLieferant
-						SET Name='".$name."',Strasse='".$street."',PLZ='".$postcode."',Ansprechpartner='".$conctactname"',URL='".$url"'
-						WHERE Lieferant_ID = '".$ID"'";
+						SET Name='".$name."',Strasse='".$street."',PLZ='".$postcode."',Ansprechpartner='".$contactname."',URL='".$url."'
+						WHERE Lieferant_ID = '".$ID."'";
 		}
 		else
 		{
 			// No $ID no changes!
 		}
-		return this->query($Query);
+		return $this->query($Query);
 	}
 	
 	// Rückgabe aller Räume, oder über die ID einen bestimmten
@@ -25,14 +25,14 @@ class setDB extends connectDB
 		if($ID != 0)
 		{
 			$Query = 'UPDATE tblRaum
-						SET Bezeichnung="'.$label.'", Notiz="'.$note'"
-						WHERE Raum_ID="'.$ID'"';
+						SET Bezeichnung="'.$label.'", Notiz="'.$note.'"
+						WHERE Raum_ID="'.$ID.'"';
 		}
 		else
 		{
 			// No $ID no changes!
 		}
-		return this->query($Query);
+		return $this->query($Query);
 	}
 	
 	// Set article attribute assignment 
@@ -40,22 +40,13 @@ class setDB extends connectDB
 	{
 		if($Art_ID != 0 && $Attribut_ID != 0){
 			$Query = "UPDATE tblZuordnung_art_attr AS zuord
-						SET Art_ID='".$Art_ID"',Attribut_ID='".$Attribut_ID."'
+						SET Art_ID='".$Art_ID."',Attribut_ID='".$Attribut_ID."'
 						WHERE zuord.Art_ID ='".$ID."'";
 		}
 		
-		return this->query($Query);
-	}	
-	
-	// Set software details
-	public function set_software($Komp_ID,$Room_ID,$manufacturer,$description,$note,$purchasedate,$warrantyduration)
-	{
-		$Query = "UPDATE tblKomponent as komp
-					SET Raum_ID='".$Raum_ID."',Hersteller='".$manufacturer."',Bezeichnung='".$description."',Notiz='".$note."',Einkaufsdatum='".$purchasedate."',Gewaehrleistungsdauer='".$warrantyduration."'
-					WHERE komp.Komponent_ID = '".$Komp_ID."'";
+		return $this->query($Query);
 	}
-		return this->query($Query);
-	}
+}	
 	
 	// alter component attributes
 	public function set_component_attributes($Att_ID, $description, $unit){

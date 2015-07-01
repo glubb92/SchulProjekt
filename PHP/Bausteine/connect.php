@@ -33,7 +33,5 @@
 				return $DB->error;
 			}
 		}	
-	}
-	
-	
+	}	
 ?>

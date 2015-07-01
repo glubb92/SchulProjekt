@@ -1,5 +1,5 @@
 <?php
-	include"connect.php";
+	include_once "connect.php";
 	
 	class addDB extends connectDB
 	{		
@@ -64,7 +64,5 @@
 			
 			return $this->query($sql);
 		}
-	}
-	
-	
+	}	
 ?>
