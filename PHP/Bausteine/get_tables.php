@@ -28,7 +28,7 @@ class getDB extends connectDB
 	{
 		if($ID == 0)	// Alle Räume
 		{
-			$Query = 'SELECT * FROM tblRaum';
+			$Query = 'SELECT * FROM tblRaum ORDER BY Bezeichnung';
 		}
 		else	// Raum nach ID
 		{
