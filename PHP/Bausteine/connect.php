@@ -25,9 +25,10 @@
 				return 'Connect Error: '.$this->myDB->connect_error;
 			}	
 			$DB = $this->myDB;
-			if($DB->query($sql) == true)
+			$res = $DB->query($sql);
+			if($DB->connect_errno == 0)
 			{
-				return true;
+				return $res;
 			}else{
 				return $DB->error;
 			}

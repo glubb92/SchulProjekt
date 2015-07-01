@@ -14,7 +14,7 @@ class getDB extends connectDB
 		{
 			$Query = "SELECT * FROM tblLieferant WHERE Lieferant_ID = '".$ID."'";
 		}
-		return this->query($Query);
+		return $this->query($Query);
 	}
 	
 	// Rückgabe aller Räume, oder über die ID einen bestimmten
@@ -28,7 +28,7 @@ class getDB extends connectDB
 		{
 			$Query = "SELECT * FROM tblRaum WHERE Raum_ID = '".$ID."'";
 		}
-		return this->query($Query);
+		return $this->query($Query);
 	}
 	
 	//Rückgabe der Räume anhand vom Stockwerk
@@ -39,7 +39,7 @@ class getDB extends connectDB
 		$temp = $floor + 100;
 		$Query = "SELECT * FROM tblRaum WHERE Bezeichnung > '".$floor."' AND Bezeichnung < '".$temp."'";
 		var_dump($Query);
-		return this->query($Query);
+		return $this->query($Query);
 	}
 	
 	//Alle dynamischen Attribute einer Komponentenart
@@ -48,7 +48,7 @@ class getDB extends connectDB
 		$Query = "SELECT attr.* FROM tblZuordnung_art_attr AS zuord
 					INNER JOIN tblKomponentenattribut AS attr ON attr.Attribut_ID = zuord.Attribut_ID
 					WHERE zuord.Art_ID = ".$ID."";
-		return this->query($Query);
+		return $this->query($Query);
 	}	
 	
 	//Rückgabe bestimmter Software
@@ -60,7 +60,7 @@ class getDB extends connectDB
 					INNER JOIN tblZuordnung_art_attr as zuord2 ON komp.Art_ID = zuord2.Art_ID
 					INNER JOIN tblKomponentenattribut as attr ON zuord2.Attribut_ID = attr.Attribut_ID
 					WHERE art.Bezeichnung = 'Software' AND komp.Bezeichnung LIKE '%".$bez."%'";
-		return this->query($Query);
+		return $this->query($Query);
 	}
 	// Rückgabe aller Räume und deren Komponenten, in denen vorhandene Komponenten eine bestimmte Bezeichnung besitzen
 	public function get_rooms_by_component($bez)
@@ -77,7 +77,7 @@ class getDB extends connectDB
 					(SELECT comp.Komponent_ID as compID , comp.raum_id as raumID , room.Bezeichnung as roombez,room.Notiz, comp.Bezeichnung as bez FROM tblKomponent as comp 
 					INNER JOIN tblRaum AS room ON comp.Raum_ID = room.Raum_ID
 					WHERE comp.Bezeichnung LIKE '%".$bez."%' AND comp.Art_ID = (SELECT art_id from tblKomponentenart where bezeichnung like 'Computer')) ORDER BY raumID,compID";
-		return this->query($Query);
+		return $this->query($Query);
 	}
 	// Funktion um alle Komponenten eines Raumes über die RaumID anzeigen zu lassen 
 	public function get_components_by_room($roomid)
@@ -92,7 +92,7 @@ class getDB extends connectDB
 					INNER JOIN tblKomponentenart ON tblKomponentenart.Art_ID = komp.Art_ID
 					INNER JOIN tblLieferant ON tblLieferant.Lieferant_ID = komp.Lieferant_ID
 					WHERE komp.Raum_ID = ".$roomid."";
-		return this->query($Query);
+		return $this->query($Query);
 	}
 	
 	//Rückgabe aller dynamisch verwalteten attribute von einem Komponent
@@ -101,7 +101,7 @@ class getDB extends connectDB
 		$Query = "SELECT zuord.attribut_ID, attr.Bezeichnung, zuord.Wert,attr.Einheit FROM tblZuordnung_attr_komp AS zuord
 					INNER JOIN tblKomponentenattribut AS attr ON zuord.Attribut_ID = attr.Attribut_ID
 					WHERE zuord.Komponent_ID = ".$ID."";
-		return this->query($Query);
+		return $this->query($Query);
 	}
 	
 	// Rückgabe aller Vorgangsarten, oder über die ID einen bestimmten
@@ -115,7 +115,7 @@ class getDB extends connectDB
 		{
 			$Query = "SELECT * FROM tblVorgangsart WHERE Vorgang_ID = '".$ID."'";
 		}
-		return this->query($Query);
+		return $this->query($Query);
 	}
 }
 ?>
