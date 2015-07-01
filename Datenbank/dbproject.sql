@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 30. Jun 2015 um 10:28
+-- Erstellungszeit: 01. Jul 2015 um 08:23
 -- Server Version: 5.5.32
 -- PHP-Version: 5.4.19
 
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `tblkomponentenattribut` (
   `Bezeichnung` varchar(45) DEFAULT NULL,
   `Einheit` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Attribut_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Daten für Tabelle `tblkomponentenattribut`
@@ -127,7 +127,8 @@ INSERT INTO `tblkomponentenattribut` (`Attribut_ID`, `Bezeichnung`, `Einheit`) V
 (2, 'Spannung', 'Volt'),
 (3, 'Arbeitsspeicher', 'Megabyte'),
 (4, 'Volumen', 'Gigabyte'),
-(5, 'Name', NULL);
+(5, 'Name', 'String'),
+(6, 'Produktkey', 'String');
 
 -- --------------------------------------------------------
 
@@ -238,7 +239,8 @@ CREATE TABLE IF NOT EXISTS `tblzuordnung_art_attr` (
 
 INSERT INTO `tblzuordnung_art_attr` (`Art_ID`, `Attribut_ID`) VALUES
 (1, 1),
-(1, 2);
+(1, 2),
+(5, 6);
 
 -- --------------------------------------------------------
 
@@ -249,7 +251,7 @@ INSERT INTO `tblzuordnung_art_attr` (`Art_ID`, `Attribut_ID`) VALUES
 CREATE TABLE IF NOT EXISTS `tblzuordnung_attr_komp` (
   `Attribut_ID` int(11) NOT NULL,
   `Komponent_ID` int(11) NOT NULL,
-  `Wert` decimal(45,0) DEFAULT NULL,
+  `Wert` text,
   PRIMARY KEY (`Attribut_ID`,`Komponent_ID`),
   KEY `fk_tblKomponentenattribut_has_tblKomponent_tblKomponent1_idx` (`Komponent_ID`),
   KEY `fk_tblKomponentenattribut_has_tblKomponent_tblKomponentenat_idx` (`Attribut_ID`)
@@ -261,7 +263,8 @@ CREATE TABLE IF NOT EXISTS `tblzuordnung_attr_komp` (
 
 INSERT INTO `tblzuordnung_attr_komp` (`Attribut_ID`, `Komponent_ID`, `Wert`) VALUES
 (1, 1, '450'),
-(2, 1, '230');
+(2, 1, '230'),
+(6, 10, 'XXXX-XXXX-XXXX-XXXX');
 
 -- --------------------------------------------------------
 
