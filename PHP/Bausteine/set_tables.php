@@ -56,4 +56,23 @@ class setDB extends connectDB
 	}
 		return this->query($Query);
 	}
+	
+	// alter component attributes
+	public function set_component_attributes($Att_ID, $description, $unit){
+		if($Att_ID!=0){
+			$Query = "UPDATE tblkomponentenattribut
+						SET Bezeichnung='".$description."',Einheit='".$unit."'
+						WHERE Attribut_ID = '".$Att_ID."'";
+		}
+		return this->query($Query);
+	}
+	
+	// add new component attribute
+	public function add_component_attribute($Att_ID, $description, $unit){
+		if(isset($description) && isset($unit)){
+			$Query = "INSERT INTO tblkomponentenattribut(Bezeichnung, Einheit)
+						VALUES('".$description."','".$unit."')";
+		}
+		return this->query($Query);
+	}
 ?>
