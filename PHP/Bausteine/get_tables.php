@@ -90,7 +90,7 @@ class getDB extends connectDB
 	{
 		$Query = "SELECT  
 					komp.Komponent_ID AS ID,
-					tblKomponentenart.Bezeichnung AS Bezeichnung,
+					tblKomponentenart.Bezeichnung AS ArtBezeichnung,
 					komp.Hersteller, komp.Bezeichnung, komp.Notiz, komp.Einkaufsdatum, komp.Gewaehrleistungsdauer,
 					tblLieferant.Name
 					FROM tblKomponent AS komp 
