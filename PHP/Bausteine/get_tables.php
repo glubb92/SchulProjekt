@@ -89,8 +89,8 @@ class getDB extends connectDB
 	public function get_components_by_room($roomid)
 	{
 		$Query = "SELECT  
-					komp.Komponent_ID,
-					tblKomponentenart.Bezeichnung,
+					komp.Komponent_ID AS ID,
+					tblKomponentenart.Bezeichnung AS Bezeichnung,
 					komp.Hersteller, komp.Bezeichnung, komp.Notiz, komp.Einkaufsdatum, komp.Gewaehrleistungsdauer,
 					tblLieferant.Name
 					FROM tblKomponent AS komp 
