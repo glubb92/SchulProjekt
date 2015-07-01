@@ -4,7 +4,9 @@
 	if (isset($_SESSION['username'])) {
 		include'Menu.php';
 		include'..\Bausteine\insert_tables.php';
+		// include'..\Bausteine\get_tables.php';
 		$add = new addDB();
+		// $get = new getDB();
 		if (isset($_SESSION['username']) && $_SESSION['username']== 'Admin') {
 		echo "
 		<section id='content'>
