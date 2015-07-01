@@ -85,7 +85,7 @@ class getDB extends connectDB
 					WHERE comp.Bezeichnung LIKE '%".$bez."%' AND comp.Art_ID = (SELECT art_id from tblKomponentenart where bezeichnung like 'Computer')) ORDER BY raumID,compID";
 		return $this->query($Query);
 	}
-	// Funktion um alle Komponenten eines Raumes über die RaumID anzeigen zu lassen 
+	// Funktion um alle Komponenten , die kein Teilkomponent sind, eines Raumes über die RaumID anzeigen zu lassen 
 	public function get_components_by_room($roomid)
 	{
 		$Query = "SELECT  
@@ -97,7 +97,8 @@ class getDB extends connectDB
 					INNER JOIN tblRaum ON tblRaum.Raum_ID = komp.Raum_ID
 					INNER JOIN tblKomponentenart ON tblKomponentenart.Art_ID = komp.Art_ID
 					INNER JOIN tblLieferant ON tblLieferant.Lieferant_ID = komp.Lieferant_ID
-					WHERE komp.Raum_ID = ".$roomid."";
+					LEFT JOIN tblZuordnung_komp_vorgang as zuord ON komp.Komponent_ID = zuord.Teilkomponenten_ID
+					WHERE komp.Raum_ID = ".$roomid." AND zuord.Teilkomponenten_ID IS NULL";
 		return $this->query($Query);
 	}
 	
