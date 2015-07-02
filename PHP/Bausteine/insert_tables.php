@@ -22,7 +22,7 @@
 			return $this->query($sql);
 		}
 
-		public function add_Raum($Bezeichung, $Notiz)
+		public function add_raum($Bezeichung, $Notiz)
 		{
 			if(!$this->openDB()){
 				return 'Connect Error: '.$this->myDB->connect_error;}	

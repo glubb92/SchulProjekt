@@ -39,7 +39,7 @@
 				<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Raum</a>
 					  <ul class='dropdown-menu submenu-dropdown'>
 						<li class><a href='Raum.php'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>
-						<li><a href='#'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>
+						<li><a href='Raum_neu.php'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>
 					  </ul>
 				</li>
 				<li class='dropdown yamm-fw'>

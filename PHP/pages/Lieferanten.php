@@ -12,7 +12,7 @@
 		<div style='max-width: 50%;'>
 			<div class='form-group'>
 				<input type='text' class='form-control' id='nameInput' name='nameInput' placeholder='".$suchtmp."'>
-				<input type='submit' name='search' value='Suchen'>
+				<input type='submit' class='btn btn-default' name='search' value='Suchen'>
 			</div>
 		</div>
 		</form>";
@@ -38,7 +38,7 @@
 			echo "<td><input type='hidden' name='PLZ' value='".$row['PLZ']."'>".$row['PLZ']."</input></td>";
 			echo "<td><input type='hidden' name='ansprechpartner' value='".$row['Ansprechpartner']."' >".$row['Ansprechpartner']."</input></td>";
 			echo "<td><a href='".$row['URL']."'><input type='hidden' name='url' value='".$row['URL']."' >".$row['URL']."</input></a></td>";
-			echo "<td><input type='submit' name='edit' value='Bearbeiten'></td>";
+			echo "<td><input type='submit' name='edit' class='btn btn-default' value='Bearbeiten'></td>";
 			echo "</form></tr>";
 		}
 		echo"</tbody></table>";
