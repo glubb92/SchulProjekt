@@ -57,7 +57,7 @@
 										<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$Data["Raum_ID"].'" aria-expanded="false" aria-controls="collapse'.$Data["Raum_ID"].'">
 											'.'Raum: '.$raumbez.' <span class="badge">'.$raumanz["Anzahl"].'</span>
 										</a>
-										<a href="">Bearbeiten</a>
+										<a href="Raum_neu.php?id='.$Data["Raum_ID"].'&bezeichnung='.$Data["Bezeichnung"].'&notiz='.$Data["Notiz"].'">Bearbeiten</a>
 									</h4>
 								</div>
 								<div id="collapse'.$Data["Raum_ID"].'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading'.$Data["Raum_ID"].'">

@@ -22,12 +22,19 @@
 				$notiz = $_POST['notiz'];
 				$update = true;
 			}
+			if(isset($_GET['id']) && count($_GET)>0)
+			{
+				$id = $_GET['id'];
+				$bezeichnung = $_GET['bezeichnung'];
+				$notiz = $_GET['notiz'];
+				$update = true;
+			}
 			
 			echo "
 			<section id='content'>
 			<form method='POST' action='#' >
 				<div class='row'>
-					<h1 class='page-header' >Raum hinzufÃ¼gen</div>
+					<h1 class='page-header' >Raum hinzufügen</div>
 				</div>
 				<div class='row'>
 					<div class='col-xs-6'>
@@ -66,7 +73,7 @@
 				}else{
 					$add->add_raum($bezeichnung, $notiz);
 				}
-				echo 'HinzugefÃ¼gt <br> <a href=\'Raum.php\'><script>window.location = \'Raum.php\';</script></a>';
+				echo 'Hinzugefügt <br> <a href=\'Raum.php\'><script>window.location = \'Raum.php\';</script></a>';
 			}		
 		} else{
 			echo 'Du hast dafÃ¼r keine Rechte! <br> <a href=\'home.php\'><script>window.location = \'Raum.php\';</script></a>';
