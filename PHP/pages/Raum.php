@@ -39,7 +39,7 @@
 										</a>
 									</h4>
 								</div>
-								<div id="collapse'.$Data["Raum_ID"].'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading'.$Data["Raum_ID"].'">
+								<div id="collapse'.$Data["Raum_ID"].'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading'.$Data["Raum_ID"].'">
 									<div class="panel-body">
 										<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">';
 											$comp = $db->get_components_by_room($Data["Raum_ID"]);
