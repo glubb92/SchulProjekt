@@ -25,11 +25,14 @@
 						<?php
 						while($Data = $Out->fetch_assoc())
 						{
+							if(isset($Data["Notiz"])) $raumbez = $Data["Bezeichnung"].' - '.$Data["Notiz"];
+							else $raumbez = $Data["Bezeichnung"];
+							
 							echo '
 								<div class="panel-heading" role="tab" id="heading'.$Data["Raum_ID"].'">
 									<h4 class="panel-title">
-										<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$Data["Raum_ID"].'" aria-expanded="true" aria-controls="collapse'.$Data["Raum_ID"].'">
-											'.'Raum: '.$Data["Bezeichnung"].' - '.$Data["Notiz"].' <span class="badge">25</span>
+										<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$Data["Raum_ID"].'" aria-expanded="false" aria-controls="collapse'.$Data["Raum_ID"].'">
+											'.'Raum: '.$raumbez.' <span class="badge">25</span>
 										</a>
 									</h4>
 								</div>
@@ -52,7 +55,7 @@
 															</div>
 														</div>';
 													}
-													$id = $Data["Raum_ID"].'-'.$Data2["ID"];
+													$id = $Data["Raum_ID"].'-'.$Data2["KompID"];
 													$art = $Data2["ArtBezeichnung"];
 													echo'<div class="panel panel-default">
 														<div class="panel-heading" role="tab" id="heading'.$id.'">
@@ -68,7 +71,7 @@
 												}
 												
 												
-												echo'<li><a href="#">'.$Data2["KompBezeichnung"].'</a></li>';
+												echo'<li><a href="Komponenten_neu.php?komponentenart='.$Data2["ArtID"].'&komponententid='.$Data2["KompID"].'">'.$Data2["KompBezeichnung"].'</a></li>';
 																
 											}
 											if($hat_inventar == true)
