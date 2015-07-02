@@ -13,7 +13,7 @@
 <?php	
 	
 	$verbindung = mysqli_connect("localhost",
-	"root","root","dbproject")
+	"root","","dbproject")
 	or die("Verbindung zur Datenbank konnte nicht hergestellt werden");
 
 	//mysql_select_db("dbproject") or die ("Datenbank konnte nicht ausgewählt werden");
