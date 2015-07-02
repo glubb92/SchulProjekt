@@ -58,9 +58,10 @@
 										<a role="button"  data-toggle="collapse" data-parent="#accordion" href="#collapse'.$Data["Raum_ID"].'" aria-expanded="false" aria-controls="collapse'.$Data["Raum_ID"].'">
 											'.'Raum: '.$raumbez.' <span class="badge">'.$raumanz["Anzahl"].'</span>
 										</a>
-									</font>
-										<a href="Raum_neu.php?id='.$Data["Raum_ID"].'&bezeichnung='.$Data["Bezeichnung"].'&notiz='.$Data["Notiz"].'">Bearbeiten</a>
-									</h4>
+									</font>';
+									if (isset($_SESSION['username']) && $_SESSION['username'] == 'Admin')
+										echo '<a href="Raum_neu.php?id='.$Data["Raum_ID"].'&bezeichnung='.$Data["Bezeichnung"].'&notiz='.$Data["Notiz"].'">Bearbeiten</a>';
+									echo '</h4>
 								</div>
 								<div id="collapse'.$Data["Raum_ID"].'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading'.$Data["Raum_ID"].'">
 									<div class="panel-body">
@@ -103,7 +104,7 @@
 												}
 												
 												
-												echo'<li><a href="Komponenten_neu.php?komponentenart='.$Data2["ArtID"].'&komponentenid='.$Data2["KompID"].'">'.$Data2["KompBezeichnung"].'</a></li>';
+												echo'<li><a href="Komponenten_anzeigen.php?komponentenart='.$Data2["ArtID"].'&komponentenid='.$Data2["KompID"].'">'.$Data2["KompBezeichnung"].'</a></li>';
 															
 											}
 											if($hat_inventar == true)

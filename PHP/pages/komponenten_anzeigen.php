@@ -64,7 +64,10 @@
 						</div>
 						<div class="row">
 							<div class="button-row">
-								<a href="komponenten_neu.php?komponentenart=<?php echo $compArt ?>&komponentenid=<?php echo $compID ?>" class="btn btn-default">Bearbeiten</a>
+								<?php
+								if (isset($_SESSION['username']) && $_SESSION['username'] == 'Admin')
+								echo'<a href="komponenten_neu.php?komponentenart=<?php echo $compArt ?>&komponentenid=<?php echo $compID ?>" class="btn btn-default">Bearbeiten</a>'
+								?>
 								<a href="komponenten_overview.php?komponentenart=<?php echo $compArt ?>" class="btn btn-default">Zurück</a>
 							</div>
 						</div>
