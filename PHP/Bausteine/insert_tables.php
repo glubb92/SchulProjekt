@@ -36,7 +36,7 @@
 			return $this->query($sql);
 		}
 
-		public function add_Kompart($Bezeichung)
+		public function add_component_type($Bezeichung)
 		{
 			
 			if(!$this->openDB()){
@@ -50,9 +50,8 @@
 			return $this->query($sql);
 		}
 		
-		public function add_Kompattribut($Bezeichung, $Einheit)
+		public function add_component_attribute($Bezeichung, $Einheit)
 		{
-			
 			if(!$this->openDB()){
 				return 'Connect Error: '.$this->myDB->connect_error;}	
 			$DB = $this->myDB;
@@ -63,23 +62,6 @@
 			$sql = "INSERT INTO tblkomponentenattribut (Bezeichnung, Einheit) VALUES ('".$Bezeichung."','".$Einheit."')";
 			
 			return $this->query($sql);
-		}
-		
-		// add new component attribute
-		function add_component_attribute($Att_ID, $description, $unit){
-			if(isset($description) && isset($unit)){
-				$Query = "INSERT INTO tblkomponentenattribut(Bezeichnung, Einheit)
-							VALUES('".$description."','".$unit."')";
-			}
-			return $this->query($Query);
-		}
-		
-		function add_component_type($label){
-			if($label != 0){
-				$Query = "INSERT INTO tblkomponentenart(Bezeichnung)
-							VALUES('".$label."')";	
-			}
-			return $this->query($Qhery);
 		}
 	}	
 ?>
