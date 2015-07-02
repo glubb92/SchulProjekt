@@ -28,7 +28,7 @@
 							echo '
 								<div class="panel-heading" role="tab" id="heading'.$Data["Raum_ID"].'">
 									<h4 class="panel-title">
-										<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$Data["Raum_ID"].'" aria-expanded="true" aria-controls="collapseOne">
+										<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$Data["Raum_ID"].'" aria-expanded="true" aria-controls="collapse'.$Data["Raum_ID"].'">
 											'.'Raum: '.$Data["Bezeichnung"].' - '.$Data["Notiz"].' <span class="badge">25</span>
 										</a>
 									</h4>
@@ -37,31 +37,49 @@
 									<div class="panel-body">
 										<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">';
 											$comp = $db->get_components_by_room($Data["Raum_ID"]);
+											$art = "Start";
+											$hat_inventar = false;
 											while($Data2 = $comp->fetch_assoc())
 											{
-												echo'<div class="panel panel-default">
-													<div class="panel-heading" role="tab" id="headingTwo">
-														<h4 class="panel-title">
-															<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-																'.$Data2["ArtBezeichnung"].' <span class="badge">25</span>
-															</a>
-														</h4>
-													</div>
-													<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-														<div class="panel-body">
-															<ul>
-																<li><a href="#">iiyama 38</a></li>
-																<li><a href="#">iiyama 39</a></li>
-																<li><a href="#">iiyama 40</a></li>
-																<li><a href="#">...</a></li>
-															</ul>
+												$hat_inventar = true;
+												if($art != $Data2["ArtBezeichnung"])
+												{
+													if($art != "Start")
+													{
+														echo'
+																	</ul>
+																</div>
+															</div>
+														</div>';
+													}
+													$id = $Data["Raum_ID"].'-'.$Data2["ID"];
+													$art = $Data2["ArtBezeichnung"];
+													echo'<div class="panel panel-default">
+														<div class="panel-heading" role="tab" id="heading'.$id.'">
+															<h4 class="panel-title">
+																<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapse'.$id.'" aria-expanded="false" aria-controls="collapse'.$id.'">
+																	'.$Data2["ArtBezeichnung"].' <span class="badge">25</span>
+																</a>
+															</h4>
 														</div>
-													</div>
-												</div>';
+														<div id="collapse'.$id.'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading'.$id.'">
+															<div class="panel-body">
+																<ul>';
+												}
+												
+												
+												echo'<li><a href="#">'.$Data2["KompBezeichnung"].'</a></li>';
+																
 											}
-											
-											
-										echo '</div>
+											if($hat_inventar == true)
+											{
+												echo'
+														</ul>
+													</div>
+												</div>
+											</div>';
+											}
+										echo'</div>
 									</div>
 								</div>';
 						}
