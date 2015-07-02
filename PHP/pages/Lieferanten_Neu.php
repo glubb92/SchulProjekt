@@ -34,7 +34,7 @@
 			<section id='content'>
 			<form method='POST' action='#' >
 				<div class='row'>
-					<h1 class='page-header' >Lieferanten hinzufügen/bearbeiten</div>
+					<h1 class='page-header' >Lieferanten hinzufÃ¼gen/bearbeiten</div>
 				</div>
 				<div class='row'>
 					<div class='col-xs-6'>
