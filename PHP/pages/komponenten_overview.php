@@ -13,9 +13,17 @@
 		
 		if($valid){
 			$db = new getDB();
+			
 			$komponenten = $db->get_All_Komponenten_With_Attributes($compArt);
+			
+			$komponenten2 = $db->get_KomponentenArt($compArt);
+			$header = mysqli_fetch_assoc($komponenten2);
+			echo "<section id='content'>
+			<div class='row'>
+				<h1 class='page-header' >".$header['ArtBez']."</h1>
+			</div>";		
 	?>
-
+		
 		<table class="zui-table zui-table-rounded">
 			<thead>
 				<tr>

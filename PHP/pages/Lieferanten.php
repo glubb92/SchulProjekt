@@ -40,7 +40,7 @@
 			echo "<td><input type='hidden' name='strasse' value='".$row['Strasse']."'>".$row['Strasse']."</input></td>";
 			echo "<td><input type='hidden' name='PLZ' value='".$row['PLZ']."'>".$row['PLZ']."</input></td>";
 			echo "<td><input type='hidden' name='ansprechpartner' value='".$row['Ansprechpartner']."' >".$row['Ansprechpartner']."</input></td>";
-			echo "<td><a href='".$row['URL']."'><input type='hidden' name='url' value='".$row['URL']."' >".$row['URL']."</input></a></td>";
+			echo "<td><a href='https://".$row['URL']."'><input type='hidden' name='url' value='".$row['URL']."' >".$row['URL']."</input></a></td>";
 			if (isset($_SESSION['username']) && $_SESSION['username']== 'Admin') {
 			echo "<td><input type='submit' name='edit' class='btn btn-default' value='Bearbeiten'></td>";}
 			echo "</form></tr>";
