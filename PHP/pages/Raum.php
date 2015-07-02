@@ -14,11 +14,31 @@
 	<?php
 		$db = new getDB();
 		$Out = $db->get_rooms( );
+		
+		if(isset($_POST) && count($_POST)>0)
+		{
+			$suchtmp = $_POST['nameInput'];
+			$Out = $db->get_room_by_search($suchtmp);
+			//echo "Ergebnisse für: ". $suchtmp;
+		}
 	?>
 	<section id="content">
 			<div class="row">
 				<h1 class="page-header" >Raumliste</div>
 			</div>
+					<?php
+	$suchtmp ='Suchbegriff';
+	
+	echo"<form method='POST' action='#'>
+	<div class='row'>
+		<div class='form-group'>
+			<input type='text' class='form-control' id='nameInput' name='nameInput' placeholder='".$suchtmp."'>
+			<input type='submit' class='btn btn-default' name='search' value='Suchen'>
+		</div>
+	</div>
+	</form>";
+				
+	?>
 			<div class="row">
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 					<div class="panel panel-default">
@@ -37,12 +57,15 @@
 										<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$Data["Raum_ID"].'" aria-expanded="false" aria-controls="collapse'.$Data["Raum_ID"].'">
 											'.'Raum: '.$raumbez.' <span class="badge">'.$raumanz["Anzahl"].'</span>
 										</a>
+										<a href="">Bearbeiten</a>
 									</h4>
 								</div>
 								<div id="collapse'.$Data["Raum_ID"].'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading'.$Data["Raum_ID"].'">
 									<div class="panel-body">
 										<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">';
+		
 											$comp = $db->get_components_by_room($Data["Raum_ID"]);
+
 											$art = "Start";
 											$hat_inventar = false;
 											while($Data2 = $comp->fetch_assoc())
@@ -99,10 +122,11 @@
 			</div>
 			<div class="row">
 				<div class="button-row">
-					<a href="bearbeiten.html" class="btn btn-default">Bearbeiten</a>
-					<a href="#" class="btn btn-default">Zurück</a>
+					<a href="Raum.php" class="btn btn-default">Zurück</a>
 				</div>
 			</div>
+			
+
 </section>
 
 </body>
