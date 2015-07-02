@@ -24,6 +24,7 @@
 }
 .zui-table-rounded {
     border: none;
+	margin: 10px 15px;
 }
 .zui-table-rounded thead th {
     background-color: #09C;

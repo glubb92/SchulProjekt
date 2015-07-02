@@ -246,5 +246,20 @@ class getDB extends connectDB
 
 		return $this->query($Query);
 	}
+	
+	// Gibt Komponenten zurück von einer Art, die auf die Suche zutreffen
+	public function get_komponente_by_search($artID,$searchkey)
+	{
+			$Query = "select t3.AttrID as AttrID, t3.Komponent_ID, t4.Bezeichnung as Bezeichnung, t3.wert as Wert, t4.Einheit as Einheit,t5.Bezeichnung as Bezeichnung_Komponente, t5.Hersteller as Hersteller, t5.Notiz as Notiz
+					from (SELECT kompAttr.attribut_ID as AttrID, kompAttr.Wert as Wert , kompAttr.komponent_id as Komponent_ID from tblzuordnung_attr_komp as kompAttr inner join tblkomponent as komp on kompAttr.komponent_id = komp.komponent_id where komp.art_id = ".$artID."
+					union select attribut_id as AttrID, '' as Wert,'' as Komponent_ID from tblzuordnung_art_attr where art_id = ".$artID.") as t3 
+					Inner join tblkomponentenattribut as t4 on t4.attribut_ID = t3.AttrID
+					left join tblkomponent as t5 on t5.Komponent_ID =  t3.Komponent_ID
+                    WHERE t5.Bezeichnung like '%".$searchkey."%'
+                    or t5.Hersteller like '%".$searchkey."%'
+                    or t5.Notiz like '%".$searchkey."%'
+					order by t3.Komponent_ID";
+			return $this->query($Query);
+	}
 }
 ?>

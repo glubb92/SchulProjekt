@@ -7,7 +7,7 @@
 		{
 			if (!isset($this->myDB))
 			{		
-				$this->myDB = new mysqli("localhost", "root", "", "dbproject");
+				$this->myDB = new mysqli("localhost", "root", "root", "dbproject");
 				if ($this->myDB->connect_error) {
 					echo 'Connect Error: '.$this->myDB->connect_error;
 					return false;
