@@ -124,5 +124,19 @@ class getDB extends connectDB
 		}
 		return $this->query($Query);
 	}
+	
+		// Rückgabe aller Komponentenarten, oder über die ID einen bestimmten
+	public function get_component_art($ID = 0)
+	{
+		if($ID == 0)	// Alle Komponentenarten
+		{
+			$Query = 'SELECT * FROM tblkomponentenart';
+		}
+		else	// Komponentenarten nach ID
+		{
+			$Query = "SELECT * FROM tblkomponentenart WHERE Art_ID = '".$ID."'";
+		}
+		return $this->query($Query);
+	}
 }
 ?>

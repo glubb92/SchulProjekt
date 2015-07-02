@@ -58,7 +58,7 @@ class setDB extends connectDB
 	}
 	
 	// alter component attributes
-	public function set_component_attributes($Att_ID, $description, $unit){
+	function set_component_attributes($Att_ID, $description, $unit){
 		if($Att_ID!=0){
 			$Query = "UPDATE tblkomponentenattribut
 						SET Bezeichnung='".$description."',Einheit='".$unit."'
@@ -68,7 +68,7 @@ class setDB extends connectDB
 	}
 
 	// add new component attribute
-	public function add_component_attribute($Att_ID, $description, $unit){
+	function add_component_attribute($Att_ID, $description, $unit){
 		if(isset($description) && isset($unit)){
 			$Query = "INSERT INTO tblkomponentenattribut(Bezeichnung, Einheit)
 						VALUES('".$description."','".$unit."')";
