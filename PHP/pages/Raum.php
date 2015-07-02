@@ -19,7 +19,7 @@
 		{
 			$suchtmp = $_POST['nameInput'];
 			$Out = $db->get_room_by_search($suchtmp);
-			//echo "Ergebnisse für: ". $suchtmp;
+			//echo "Ergebnisse fÃ¼r: ". $suchtmp;
 		}
 	?>
 	<section id="content">
@@ -125,7 +125,7 @@
 			</div>
 			<div class="row">
 				<div class="button-row">
-					<a href="Raum.php" class="btn btn-default">Zurück</a>
+					<a href="Raum.php" class="btn btn-default">ZurÃ¼ck</a>
 				</div>
 			</div>
 			
