@@ -16,6 +16,11 @@
 		<link rel='icon' type = 'image/vnd.microsoft.icon' href= '/favicon.ico' >
 	</head>
 	<body>
+	<script>
+	$(document).on('click', '.yamm .dropdown-menu', function(e) {
+  e.stopPropagation();
+})
+	</script>
 	<?php
 	if (isset($_SESSION['username'])) {
 	echo"
@@ -61,14 +66,14 @@
 											{
 											echo"<li>
 													<div class='btn-group'>
-													  <button type='button' class='btn btn-default dropdown-toggle btn-submenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+													  <a href=\"komponenten_overview.php?komponentenart=".$row['Art_ID']."\" class='btn btn-default dropdown-toggle btn-submenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
 														".$row['Bezeichnung']."
-													  </button>
+													  </a>
 													  <ul class='dropdown-menu submenu-dropdown'>
-														<li class><a href='".'#'."'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>";
+														<li class><a href=\"komponenten_overview.php?komponentenart=".$row['Art_ID']."\"><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>";
 														if (isset($_SESSION['username']) && $_SESSION['username']== 'Admin') {
 														echo"
-														<li><a href='".'#'."'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>";}
+														<li><a href=\"komponenten_neu.php?komponentenart=".$row['Art_ID']."&komponentenid=-1\"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>";}
 													echo"  </ul>
 													</div>
 												</li>";

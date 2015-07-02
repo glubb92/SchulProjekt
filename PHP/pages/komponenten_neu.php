@@ -102,7 +102,15 @@
 						<div class="row">
 							<div class="button-row">
 								<button type="submit" class="btn btn-default">Speichern</button>
-								<a href="komponenten_anzeigen.php?komponentenart=<?php echo $compArt?>&komponentenid=<?php echo $compID?>" class="btn btn-default">Zurück</a>
+								<?php if($compID != -1){?>
+									<a href="komponenten_anzeigen.php?komponentenart=<?php echo $compArt?>&komponentenid=<?php echo $compID?>" class="btn btn-default">Zurück</a>
+								<?php 
+									}else{
+								?>
+									<a href="komponenten_overview.php?komponentenart=<?php echo $compArt?>" class="btn btn-default">Zurück</a>
+								<?php 
+									}
+								?>
 							</div>
 						</div>
 						</form>
