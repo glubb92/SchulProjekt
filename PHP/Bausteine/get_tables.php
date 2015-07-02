@@ -23,7 +23,6 @@ class getDB extends connectDB
 		$Query = "SELECT * FROM tblLieferant WHERE Name like '%".$ID."%' or Strasse like '%".$ID."%' or PLZ like '%".$ID."%' or Ansprechpartner like '%".$ID."%' or URL like '%".$ID."%'";
 		return $this->query($Query);
 	}
-	
 	// Rückgabe aller Räume, oder über die ID einen bestimmten
 	public function get_rooms($ID = 0)
 	{
@@ -92,7 +91,7 @@ class getDB extends connectDB
 		$Query = "SELECT  
 					komp.Komponent_ID AS ID,
 					tblKomponentenart.Bezeichnung AS ArtBezeichnung,
-					komp.Hersteller, komp.Bezeichnung, komp.Notiz, komp.Einkaufsdatum, komp.Gewaehrleistungsdauer,
+					komp.Hersteller, komp.Bezeichnung AS KompBezeichnung, komp.Notiz, komp.Einkaufsdatum, komp.Gewaehrleistungsdauer,
 					tblLieferant.Name
 					FROM tblKomponent AS komp 
 					INNER JOIN tblRaum ON tblRaum.Raum_ID = komp.Raum_ID
