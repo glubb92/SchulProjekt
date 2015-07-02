@@ -74,19 +74,34 @@ class getDB extends connectDB
 		//Erster Select: Alle Computer, bei denen die Suche auf ein Teilkomponent zutrifft
 		// union: mergen von beiden Ergebnissen in eines
 		//Zweiter Select: Alle Computer, auf die die Suchbedingung an sich zutrifft
-		$Query = "(SELECT zuord.Komponent_ID as compID, comp.raum_id as raumID, room.Bezeichnung as roombez,room.notiz, comp1.Bezeichnung as bez FROM tblKomponent as comp
+		$Query = "(SELECT zuord.Komponent_ID as compID, comp.raum_id as Raum_ID, room.Bezeichnung as Bezeichnung,room.notiz, comp1.Bezeichnung as bez FROM tblKomponent as comp
 					INNER JOIN tblZuordnung_komp_vorgang as zuord ON comp.Komponent_ID = zuord.Teilkomponenten_ID
 					INNER JOIN tblKomponent AS comp1 ON zuord.Komponent_ID = comp1.Komponent_ID 
 					INNER JOIN tblRaum AS room ON comp1.Raum_ID = room.Raum_ID
 					WHERE comp.Bezeichnung LIKE '%".$bez."%' AND comp1.Art_ID = (SELECT art_id from tblKomponentenart where bezeichnung like 'Computer'))
 					union 
-					(SELECT comp.Komponent_ID as compID , comp.raum_id as raumID , room.Bezeichnung as roombez,room.Notiz, comp.Bezeichnung as bez FROM tblKomponent as comp 
+					(SELECT comp.Komponent_ID as compID , comp.raum_id as Raum_ID , room.Bezeichnung as Bezeichnung,room.Notiz, comp.Bezeichnung as bez FROM tblKomponent as comp 
 					INNER JOIN tblRaum AS room ON comp.Raum_ID = room.Raum_ID
-					WHERE comp.Bezeichnung LIKE '%".$bez."%' AND comp.Art_ID = (SELECT art_id from tblKomponentenart where bezeichnung like 'Computer')) ORDER BY raumID,compID";
+					WHERE comp.Bezeichnung LIKE '%".$bez."%' AND comp.Art_ID = (SELECT art_id from tblKomponentenart where bezeichnung like 'Computer')) ORDER BY Raum_ID,compID ";
 		return $this->query($Query);
 	}
+	
+	// Gibt einen Raum zurück, wenn ein Komponent in "Bezeichnung" dem Suchbegriff übereinstimmt
+	public function get_room_by_search($bez)
+	{
+			$Query = "SELECT room.* FROM tblRaum AS room
+						LEFT JOIN  tblKomponent as comp ON room.Raum_ID = comp.Raum_ID
+						LEFT JOIN  tblKomponentenart as art ON art.Art_ID = comp.Art_ID
+						WHERE comp.Bezeichnung LIKE '%".$bez."%'
+						OR    room.Bezeichnung LIKE '%".$bez."%'
+						OR    room.Notiz LIKE '%".$bez."%'
+						OR    art.Bezeichnung LIKE '%".$bez."%'
+						GROUP BY room.Raum_ID 
+						ORDER BY room.Bezeichnung";
+			return $this->query($Query);
+	}
 	// Funktion um alle Komponenten , die kein Teilkomponent sind, eines Raumes über die RaumID anzeigen zu lassen 
-	public function get_components_by_room($roomid)
+	public function get_components_by_room($roomid) 
 	{
 		$Query = "SELECT  
 					komp.Komponent_ID AS KompID, 
