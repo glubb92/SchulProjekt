@@ -62,11 +62,11 @@
 					}else{
 						$sqlUpdate = "UPDATE tblzuordnung_attr_komp SET  Wert = '".$_POST[$attribut['AttrID']]."' WHERE Attribut_ID = ".$attribut['AttrID']." and Komponent_ID = ".$compID;
 						$db->query( $sqlUpdate);
-						/*if (mysqli_error($connection))
+						if ($db->affected_rows == 0)
 						{
 							$sqlUpdate = "INSERT INTO tblzuordnung_attr_komp (Attribut_ID, Komponent_ID, Wert) values ('".$attribut['AttrID']."','".$compID."','".$_POST[$attribut['AttrID']]."')";
+							$db->query( $sqlUpdate);
 						}
-						$db->query( $sqlUpdate);*/
 					}
 				}
 					$_GET['komponentenart']=$compArt;

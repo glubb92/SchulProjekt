@@ -48,7 +48,11 @@
 			}else{
 				return $DB->error;
 			}
-		}	
+		}
+
+		public function affected_rows(){
+			return $this->myDB->affected_rows ;
+		}		
 	}
 	
 	

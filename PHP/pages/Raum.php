@@ -103,7 +103,7 @@
 												}
 												
 												
-												echo'<li><a href="Komponenten_neu.php?komponentenart='.$Data2["ArtID"].'&komponententid='.$Data2["KompID"].'">'.$Data2["KompBezeichnung"].'</a></li>';
+												echo'<li><a href="Komponenten_neu.php?komponentenart='.$Data2["ArtID"].'&komponentenid='.$Data2["KompID"].'">'.$Data2["KompBezeichnung"].'</a></li>';
 															
 											}
 											if($hat_inventar == true)
