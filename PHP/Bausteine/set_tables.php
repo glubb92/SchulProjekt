@@ -75,5 +75,23 @@ class setDB extends connectDB
 		}
 		return $this->query($Query);
 	}
+	
+	// alter component type
+	function set_component_type($Art_ID,$label){
+		if($Art_ID != 0){
+			$Query = "UPDATE tblkomponentenart	
+						SET Bezeichnung ='".$label."'
+						WHERE Art_ID='".$Art_ID."'";
+		}
+		return $this->query($Query);
+	}
+	
+	function add_component_type($label){
+		if($label != 0){
+			$Query = "INSERT INTO tblkomponentenart(Bezeichnung)
+						VALUES('".$label."')";	
+		}
+		return $this->query($Qhery);
+	}
 }
 ?>
