@@ -50,7 +50,7 @@
 			return $this->query($sql);
 		}
 		
-		public function add_component_attribute($Bezeichung, $Einheit)
+		public function add_component_attribute($Bezeichung, $Einheit, $Art_ID)
 		{
 			if(!$this->openDB()){
 				return 'Connect Error: '.$this->myDB->connect_error;}	
@@ -58,10 +58,18 @@
 			
 			$Bezeichung = $DB->real_escape_string($Bezeichung);
 			$Einheit = $DB->real_escape_string($Einheit);
-			
+				
 			$sql = "INSERT INTO tblkomponentenattribut (Bezeichnung, Einheit) VALUES ('".$Bezeichung."','".$Einheit."')";
+			$this->query($sql);
 			
-			return $this->query($sql);
+			$sql = "Select * from tblkomponentenattribut where Bezeichnung = '".$Bezeichung."' and Einheit='".$Einheit."'";
+			$ret = $this->query($sql);
+			$tmp = $ret->fetch_array();
+			$Attribut_ID = $tmp['Attribut_ID'];
+			
+			$sql = "INSERT INTO tblzuordnung_art_attr (Art_ID, Attribut_ID) VALUES ('".$Art_ID."','".$Attribut_ID."')";
+			$this->query($sql);
+			
 		}
 	}	
 ?>

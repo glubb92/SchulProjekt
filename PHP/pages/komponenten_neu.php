@@ -118,9 +118,7 @@
 				<?php
 			}
 			
-		}
-		
-		
+		}		
 	} else{
 		echo "Du bist nicht angemeldet! <br> <a href=\"home.php\"><script>window.location = \"login.html\";</script></a>";
 	}	
