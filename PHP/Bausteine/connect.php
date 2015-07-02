@@ -7,7 +7,7 @@
 		{
 			if (!isset($this->myDB))
 			{		
-				$this->myDB = new mysqli("localhost", "root", NULL, "dbproject");
+				$this->myDB = new mysqli("localhost", "root", "root", "dbproject");
 				if ($this->myDB->connect_error) {
 					echo 'Connect Error: '.$this->myDB->connect_error;
 					return false;
@@ -33,5 +33,23 @@
 				return $DB->error;
 			}
 		}	
-	}	
+		
+				
+		public function queryDML($sql)
+		{
+			if(!$this->openDB()){
+				return 'Connect Error: '.$this->myDB->connect_error;
+			}	
+			$DB = $this->myDB;
+			$res = $DB->query($sql);
+			if($DB->connect_errno == 0)
+			{
+				return $this->myDB->insert_id ;
+			}else{
+				return $DB->error;
+			}
+		}	
+	}
+	
+	
 ?>

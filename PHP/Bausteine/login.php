@@ -3,17 +3,18 @@
 ?>
 
 <?php
-	 $verbindung = mysql_connect("localhost", "root" , "")
+	$verbindung = mysqli_connect("localhost",
+	"root","root","dbproject");
 	or die("Verbindung zur Datenbank konnte nicht hergestellt werden");
 
-	mysql_select_db("dbproject") or die ("Datenbank konnte nicht ausgewählt werden");
+	//mysql_select_db("dbproject") or die ("Datenbank konnte nicht ausgewählt werden");
 
 	$username = $_POST["username"];
 	$passwort = md5($_POST["password"]);
 
 	$abfrage = "SELECT Name, Passwort FROM tblbenutzer WHERE Name LIKE '".$username."' LIMIT 1";
-	$ergebnis = mysql_query($abfrage);
-	$row = mysql_fetch_array($ergebnis);
+	$ergebnis = mysqli_query($verbindung,$abfrage);
+	$row = mysqli_fetch_array($ergebnis);
 
 	if($row["Passwort"] == $passwort)
 		{

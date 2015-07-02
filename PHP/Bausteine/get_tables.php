@@ -51,7 +51,7 @@ class getDB extends connectDB
 	//Alle dynamischen Attribute einer Komponentenart
 	public function get_attribute_by_art($ID)
 	{
-		$Query = "SELECT attr.* FROM tblZuordnung_art_attr AS zuord
+		$Query = "SELECT attr.Attribut_ID  as AttrID, attr.Bezeichnung as Bezeichnung, attr.Einheit as Einheit FROM tblZuordnung_art_attr AS zuord
 					INNER JOIN tblKomponentenattribut AS attr ON attr.Attribut_ID = zuord.Attribut_ID
 					WHERE zuord.Art_ID = ".$ID."";
 		return $this->query($Query);
@@ -140,9 +140,20 @@ class getDB extends connectDB
 	//Rückgabe aller dynamisch verwalteten attribute von einem Komponent
 	public function get_component_attributes($ID)
 	{
-		$Query = "SELECT zuord.attribut_ID, attr.Bezeichnung, zuord.Wert,attr.Einheit FROM tblZuordnung_attr_komp AS zuord
+		$Query = "SELECT zuord.attribut_ID as AttrID, attr.Bezeichnung as Bezeichnung, zuord.Wert as Wert,attr.Einheit  as Einheit FROM tblZuordnung_attr_komp AS zuord
 					INNER JOIN tblKomponentenattribut AS attr ON zuord.Attribut_ID = attr.Attribut_ID
 					WHERE zuord.Komponent_ID = ".$ID."";
+		return $this->query($Query);
+	}	
+	
+	//Rückgabe aller Attribute und falls vorhanden die Werte der Komponente
+	public function get_all_attributes_with_values($Komp_ID, $Art_ID)
+	{
+		$Query = "select t3.AttrID as AttrID, t4.Bezeichnung as Bezeichnung, t3.wert as Wert, t4.Einheit as Einheit
+		from (SELECT attribut_ID as AttrID, Wert as Wert from tblzuordnung_attr_komp where komponent_id = ".$Komp_ID." 
+		union select attribut_id as AttrID, '' as Wert from tblzuordnung_art_attr where art_id = ".$Art_ID.") as t3 
+		Inner join tblkomponentenattribut as t4 on t4.attribut_ID = t3.AttrID 
+		Group by AttrID";
 		return $this->query($Query);
 	}
 	
@@ -159,6 +170,60 @@ class getDB extends connectDB
 		}
 		return $this->query($Query);
 	}
+
+	// Rückgabe einer Komponenten bei ihrer ID und die Bezichnung der dazugehörigen Komponentenart
+	public function get_Komponent($ID = 0)
+	{
+		if($ID == 0)	// Alle Vorgansarten
+		{
+			$Query = 'SELECT * FROM tblKomponent';
+		}
+		else	// Vorgangsart nach ID
+		{
+			$Query = "SELECT  kompArt.Bezeichnung as ArtBez, komp.Lieferant_ID as lieferID, komp.Raum_ID as raumID, komp.Art_ID as Art_ID, komp.Bezeichnung as Bezeichnung,
+			komp.Hersteller as Hersteller, komp.Einkaufsdatum as Einkaufsdatum, komp.Notiz as Notiz, komp.Gewaehrleistungsdauer as Gewaehrleistungsdauer ,
+			raum.Bezeichnung as Raum, lieferant.Name as Lieferant
+			FROM tblKomponent as komp 
+			inner join tblKomponentenart as kompArt on komp.Art_ID = kompArt.Art_ID 
+			inner join tblRaum as raum on komp.Raum_ID = raum.Raum_ID 
+			inner join tblLieferant as lieferant on komp.Lieferant_ID = lieferant.Lieferant_ID 
+			WHERE komp.Komponent_ID  = '".$ID."'";
+		}
+		return $this->query($Query);
+	}
+	// Rückgabe einer KomponentenArt bei ihrer ID
+	public function get_KomponentenArt($ID = 0)
+	{
+		if($ID == 0)	// Alle Vorgansarten
+		{
+			$Query = 'SELECT * FROM tblKomponentenart';
+		}
+		else	// Vorgangsart nach ID
+		{
+			$Query = "SELECT kompArt.Bezeichnung as ArtBez, 'Neu' as Bezeichnung FROM tblKomponentenart as kompArt WHERE kompArt.Art_ID  = ".$ID;
+		}
+		return $this->query($Query);
+	}
+	
+	// Rückgabe einer KomponentenArt bei ihrer ID
+	public function get_All_Komponenten_With_Attributes($ID = 0)
+	{
+		if($ID == 0)	// Alle Vorgansarten
+		{
+			$Query = 'SELECT * FROM tblKomponentenart';
+		}
+		else	// Vorgangsart nach ID
+		{
+			$Query = "select t3.AttrID as AttrID, t3.Komponent_ID, t4.Bezeichnung as Bezeichnung, t3.wert as Wert, t4.Einheit as Einheit,t5.Bezeichnung as Bezeichnung_Komponente, t5.Hersteller as Hersteller, t5.Notiz as Notiz
+					from (SELECT kompAttr.attribut_ID as AttrID, kompAttr.Wert as Wert , kompAttr.komponent_id as Komponent_ID from tblzuordnung_attr_komp as kompAttr inner join tblkomponent as komp on kompAttr.komponent_id = komp.komponent_id where komp.art_id = ".$ID."
+					union select attribut_id as AttrID, '' as Wert,'' as Komponent_ID from tblzuordnung_art_attr where art_id = ".$ID.") as t3 
+					Inner join tblkomponentenattribut as t4 on t4.attribut_ID = t3.AttrID
+					left join tblkomponent as t5 on t5.Komponent_ID =  t3.Komponent_ID
+					order by t3.Komponent_ID";
+		}
+		return $this->query($Query);
+	}
+			
 	
 		// Rückgabe aller Komponentenarten, oder über die ID einen bestimmten
 	public function get_component_art($ID = 0)
