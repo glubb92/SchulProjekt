@@ -16,8 +16,6 @@
 	"root","","dbproject")
 	or die("Verbindung zur Datenbank konnte nicht hergestellt werden");
 
-	//mysql_select_db("dbproject") or die ("Datenbank konnte nicht ausgewählt werden");
-
 	$username = $_POST["username"];
 	$passwort = md5($_POST["password"]);
 
@@ -28,7 +26,7 @@
 	if($row["Passwort"] == $passwort)
 		{
 		$_SESSION["username"] = $username;
-		echo "Login erfolgreich. <br> <a href=\"home.php\"><script>window.location = \"home.php\";</script></a>";
+		echo "Login erfolgreich. <br> <a href=\"home.php\"><script>window.location=\"home.php\";</script></a>";
 		}
 	else
 		{

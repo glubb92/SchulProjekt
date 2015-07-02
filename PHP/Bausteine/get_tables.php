@@ -238,5 +238,13 @@ class getDB extends connectDB
 		}
 		return $this->query($Query);
 	}
+	// Rückgabe aller Komponentenarten, oder über die ID einen bestimmten
+	public function get_software_id()
+	{
+
+			$Query = "SELECT * FROM tblkomponentenart WHERE Bezeichnung = 'Software'";
+
+		return $this->query($Query);
+	}
 }
 ?>

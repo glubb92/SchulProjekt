@@ -1,8 +1,8 @@
-<html>
  <?php
 	session_start();
+	echo $_SESSION['username'];
 	if (isset($_SESSION['username'])) {
-		include"Menu.php";
+		include_once"Menu.php";
 
 		echo"<section id='content'>
 			<div class='row'>
@@ -15,12 +15,12 @@
 					</a>
 				</div>
 				<div class='col-xs-6'>
-					<a href='Hardware.php' class='thumbnail home-tile'>
+					<a href='komponenten_overview.php?komponentenart=1' class='thumbnail home-tile'>
 						<img src='../web-assets/img/PC_computer_with_monitor_64.png' alt='Hardware'><br/><h2>Hardware</h2>
 					</a>
 				</div>
 				<div class='col-xs-6'>
-					<a href='Software.php' class='thumbnail home-tile'>
+					<a href='komponenten_overview.php?komponentenart=".$soft."' class='thumbnail home-tile'>
 						<img src='../web-assets/img/Diskette_save_interface_symbol_64.png' alt='Software'><br/><h2>Software</h2>
 					</a>
 				</div>

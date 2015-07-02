@@ -18,12 +18,10 @@
 	<body>
 	<script>
 	$(document).on('click', '.yamm .dropdown-menu', function(e) {
-	  e.stopPropagation();
-	})
+  e.stopPropagation();
+})
 	</script>
 	<?php
-	include_once '..\Bausteine\get_tables.php';
-	$get = new getDB();
 	if (isset($_SESSION['username'])) {
 	echo"
 	<div class='alibi-header'></div>
@@ -61,24 +59,24 @@
 									<div class='col-xs-12'>
 										<div class='btn-group btn-group-submenu'>
 											<ul class='submenu-list'>";
+											include_once '..\Bausteine\get_tables.php';
+											$get = new getDB();
 											$res=$get->get_component_art();
 											while ($row = $res->fetch_array())
 											{
-												if ($row['Bezeichnung'] != 'Software'){
-												echo"<li>
-														<div class='btn-group'>
-														  <a href=\"komponenten_overview.php?komponentenart=".$row['Art_ID']."\" class='btn btn-default dropdown-toggle btn-submenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-															".$row['Bezeichnung']."
-														  </a>
-														  <ul class='dropdown-menu submenu-dropdown'>
-															<li class><a href=\"komponenten_overview.php?komponentenart=".$row['Art_ID']."\"><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>";
-															if (isset($_SESSION['username']) && $_SESSION['username']== 'Admin') {
-															echo"
-															<li><a href=\"komponenten_neu.php?komponentenart=".$row['Art_ID']."&komponentenid=-1\"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>";}
-														echo"  </ul>
-														</div>
-													</li>";
-												}
+											echo"<li>
+													<div class='btn-group'>
+													  <a href=\"komponenten_overview.php?komponentenart=".$row['Art_ID']."\" class='btn btn-default dropdown-toggle btn-submenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+														".$row['Bezeichnung']."
+													  </a>
+													  <ul class='dropdown-menu submenu-dropdown'>
+														<li class><a href=\"komponenten_overview.php?komponentenart=".$row['Art_ID']."\"><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>";
+														if (isset($_SESSION['username']) && $_SESSION['username']== 'Admin') {
+														echo"
+														<li><a href=\"komponenten_neu.php?komponentenart=".$row['Art_ID']."&komponentenid=-1\"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>";}
+													echo"  </ul>
+													</div>
+												</li>";
 											}											
 											echo"</ul>
 										</div>
@@ -88,17 +86,13 @@
 						</li>
 					</ul>
 				</li>
-				<li>";
-				$ret = $get->get_software_id();
-				$arr = mysqli_fetch_array($ret);
-				static $soft;
-				$soft = $arr['Art_ID'];
-				echo"<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Software</a>
+				<li>
+				<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Software</a>
 					  <ul class='dropdown-menu submenu-dropdown'>
-						<li class><a href='komponenten_overview.php?komponentenart=".$soft."'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>";
+						<li class><a href='Software.php'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>";
 						if (isset($_SESSION['username']) && $_SESSION['username']== 'Admin') {
 						echo"
-						<li><a href='komponenten_neu.php?komponentenart=".$soft."&komponentenid=-1'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>";}
+						<li><a href='Software_Neu.php'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>";}
 					echo"</ul>
 				</li>
 				<li><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Lieferanten</a>

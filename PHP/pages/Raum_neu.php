@@ -34,7 +34,7 @@
 			<section id='content'>
 			<form method='POST' action='#' >
 				<div class='row'>
-					<h1 class='page-header' >Raum hinzuf�gen</div>
+					<h1 class='page-header' >Raum hinzufügen/bearbeiten</div>
 				</div>
 				<div class='row'>
 					<div class='col-xs-6'>
@@ -73,7 +73,7 @@
 				}else{
 					$add->add_raum($bezeichnung, $notiz);
 				}
-				echo 'Hinzugef�gt <br> <a href=\'Raum.php\'><script>window.location = \'Raum.php\';</script></a>';
+				echo 'Hinzugefügt/geändert <br> <a href=\'Raum.php\'><script>window.location = \'Raum.php\';</script></a>';
 			}		
 		} else{
 			echo 'Du hast dafür keine Rechte! <br> <a href=\'home.php\'><script>window.location = \'Raum.php\';</script></a>';
