@@ -66,15 +66,6 @@ class setDB extends connectDB
 		}
 		return $this->query($Query);
 	}
-
-	// add new component attribute
-	function add_component_attribute($Att_ID, $description, $unit){
-		if(isset($description) && isset($unit)){
-			$Query = "INSERT INTO tblkomponentenattribut(Bezeichnung, Einheit)
-						VALUES('".$description."','".$unit."')";
-		}
-		return $this->query($Query);
-	}
 	
 	// alter component type
 	function set_component_type($Art_ID,$label){
@@ -84,14 +75,6 @@ class setDB extends connectDB
 						WHERE Art_ID='".$Art_ID."'";
 		}
 		return $this->query($Query);
-	}
-	
-	function add_component_type($label){
-		if($label != 0){
-			$Query = "INSERT INTO tblkomponentenart(Bezeichnung)
-						VALUES('".$label."')";	
-		}
-		return $this->query($Qhery);
 	}
 }
 ?>
