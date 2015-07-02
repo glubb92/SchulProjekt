@@ -89,8 +89,8 @@ class getDB extends connectDB
 	public function get_components_by_room($roomid)
 	{
 		$Query = "SELECT  
-					komp.Komponent_ID AS ID,
-					tblKomponentenart.Bezeichnung AS ArtBezeichnung,
+					komp.Komponent_ID AS KompID, 
+					tblKomponentenart.Bezeichnung AS ArtBezeichnung, tblKomponentenart.Art_ID AS ArtID, 
 					komp.Hersteller, komp.Bezeichnung AS KompBezeichnung, komp.Notiz, komp.Einkaufsdatum, komp.Gewaehrleistungsdauer,
 					tblLieferant.Name
 					FROM tblKomponent AS komp 
@@ -99,6 +99,26 @@ class getDB extends connectDB
 					INNER JOIN tblLieferant ON tblLieferant.Lieferant_ID = komp.Lieferant_ID
 					LEFT JOIN tblZuordnung_komp_vorgang as zuord ON komp.Komponent_ID = zuord.Teilkomponenten_ID
 					WHERE komp.Raum_ID = ".$roomid." AND zuord.Teilkomponenten_ID IS NULL";
+		return $this->query($Query);
+	}
+	
+	// Zählt alle Komponenten in einem Raum nach Komponentenart sortiert
+	public function count_roomcomponents_by_art($roomid, $artid)
+	{
+		$Query = "SELECT count(Komponent_ID) AS Anzahl FROM tblKomponent
+					WHERE Raum_ID = ".$roomid." 
+					AND Art_ID = ".$artid."
+					GROUP BY Art_ID";
+		return $this->query($Query);
+	}
+	
+	// Zählt alle Komponenten in einem Raum, welche keine Teilkomponenten eines anderen Komponents sind
+	public function count_roomcomponents($roomid)
+	{
+		$Query = "SELECT count(komp.Komponent_ID) AS Anzahl FROM tblKomponent AS komp
+					LEFT JOIN tblZuordnung_komp_vorgang as zuord ON komp.Komponent_ID = zuord.Teilkomponenten_ID
+					WHERE Raum_ID = ".$roomid." 
+					AND zuord.Teilkomponenten_ID IS NULL";
 		return $this->query($Query);
 	}
 	
