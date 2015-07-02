@@ -39,7 +39,7 @@
 				
 				$add->add_component_type($_POST["kompbez"]);
 				
-				echo 'Geänder/Hinzugefügt <br> <a href=\'Komponententypen.php\'><script>window.location = \'Komponententypen.php\';</script></a>';
+				echo 'Hinzugefügt <br>';
 			}	
 		
 		} else{
