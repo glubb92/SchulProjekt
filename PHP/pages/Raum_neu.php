@@ -2,8 +2,7 @@
 <?php
 	session_start();
 	if (isset($_SESSION['username'])) {
-		include'Menu.php';
-		
+		include_once'Menu.php';	
 		include_once '..\Bausteine\insert_tables.php';
 		include_once '..\Bausteine\set_tables.php';
 		$add = new addDB();

@@ -3,6 +3,7 @@
 	session_start();
 ?>
 	<head>
+	<meta charset="utf-8">
 		<title>IT-Verwaltung</title>
 		<link rel='stylesheet' href='../web-assets/css/bootstrap.css' >
 		<link rel='stylesheet' href='../web-assets/css/main.css' >
@@ -57,7 +58,8 @@
 											$get = new getDB();
 											$res=$get->get_component_art();
 											while ($row = $res->fetch_array())
-											{echo"<li>
+											{
+											echo"<li>
 													<div class='btn-group'>
 													  <button type='button' class='btn btn-default dropdown-toggle btn-submenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
 														".$row['Bezeichnung']."
@@ -98,7 +100,7 @@
 				if (isset($_SESSION['username']) && $_SESSION['username']== 'Admin') {
 				echo"<li><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Admin</a>
 					  <ul class='dropdown-menu submenu-dropdown'>
-						<li><a href='Komponenten_Neu.php'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Komponenten Art</a></li>
+						<li><a href='Komponententyp_Neu.php'><span class='glyphicon glyphicon-plus' aria-hidden='true'> Bauteilattribut</span></a></li>
 					  </ul>
 					</li>"; 
 				}
