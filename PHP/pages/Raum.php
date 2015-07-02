@@ -54,9 +54,11 @@
 							echo '
 								<div class="panel-heading" role="tab" id="heading'.$Data["Raum_ID"].'">
 									<h4 class="panel-title">
-										<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$Data["Raum_ID"].'" aria-expanded="false" aria-controls="collapse'.$Data["Raum_ID"].'">
+									<font color="#0000FF">
+										<a role="button"  data-toggle="collapse" data-parent="#accordion" href="#collapse'.$Data["Raum_ID"].'" aria-expanded="false" aria-controls="collapse'.$Data["Raum_ID"].'">
 											'.'Raum: '.$raumbez.' <span class="badge">'.$raumanz["Anzahl"].'</span>
 										</a>
+									</font>
 										<a href="Raum_neu.php?id='.$Data["Raum_ID"].'&bezeichnung='.$Data["Bezeichnung"].'&notiz='.$Data["Notiz"].'">Bearbeiten</a>
 									</h4>
 								</div>
