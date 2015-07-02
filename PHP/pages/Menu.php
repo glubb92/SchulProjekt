@@ -38,9 +38,11 @@
 				<li>
 				<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Raum</a>
 					  <ul class='dropdown-menu submenu-dropdown'>
-						<li class><a href='Raum.php'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>
-						<li><a href='Raum_neu.php'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>
-					  </ul>
+						<li class><a href='Raum.php'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>";
+						if (isset($_SESSION['username']) && $_SESSION['username']== 'Admin') {
+						echo"
+						<li><a href='Raum_neu.php'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>";}
+					  echo"</ul>
 				</li>
 				<li class='dropdown yamm-fw'>
 					<a href='Hardware.php' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Hardware <span class='caret'></span></a>
@@ -50,96 +52,26 @@
 								<div class='row'> 
 									<div class='col-xs-12'>
 										<div class='btn-group btn-group-submenu'>
-											<ul class='submenu-list'>
-												<li>
+											<ul class='submenu-list'>";
+											include_once '..\Bausteine\get_tables.php';
+											$get = new getDB();
+											$res=$get->get_component_art();
+											while ($row = $res->fetch_array())
+											{echo"<li>
 													<div class='btn-group'>
 													  <button type='button' class='btn btn-default dropdown-toggle btn-submenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-														PC
+														".$row['Bezeichnung']."
 													  </button>
 													  <ul class='dropdown-menu submenu-dropdown'>
-														<li class><a href='#'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>
-														<li><a href='#'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>
-													  </ul>
+														<li class><a href='".'#'."'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>";
+														if (isset($_SESSION['username']) && $_SESSION['username']== 'Admin') {
+														echo"
+														<li><a href='".'#'."'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>";}
+													echo"  </ul>
 													</div>
-												</li>
-												<li>
-													<div class='btn-group'>
-														<button type='button' class='btn btn-default dropdown-toggle btn-submenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-															Bildschirm
-														</button>
-														<ul class='dropdown-menu submenu-dropdown'>
-															<li class><a href='#'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>
-															<li><a href='#'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>
-														</ul>
-													</div>
-												</li>
-												<li>
-													<div class='btn-group'>
-														<button type='button' class='btn btn-default dropdown-toggle btn-submenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-															Drucker
-														</button>
-														<ul class='dropdown-menu submenu-dropdown'>
-															<li class><a href='#'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>
-															<li><a href='#'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>
-														</ul>
-													</div>
-												</li>
-												<li>
-													<div class='btn-group'>
-														<button type='button' class='btn btn-default dropdown-toggle btn-submenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-															Tastatur
-														</button>
-														<ul class='dropdown-menu submenu-dropdown'>
-															<li class><a href='#'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>
-															<li><a href='#'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>
-														</ul>
-													</div>
-												</li>
-												<li>
-													<div class='btn-group'>
-														<button type='button' class='btn btn-default dropdown-toggle btn-submenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-															Maus
-														</button>
-														<ul class='dropdown-menu submenu-dropdown'>
-															<li class><a href='#'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>
-															<li><a href='#'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>
-														</ul>
-													</div>
-												</li>
-												<li>
-													<div class='btn-group'>
-														<button type='button' class='btn btn-default dropdown-toggle btn-submenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-															Festplatten
-														</button>
-														<ul class='dropdown-menu submenu-dropdown'>
-															<li class><a href='#'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>
-															<li><a href='#'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>
-														</ul>
-													</div>
-												</li>
-												<li>
-													<div class='btn-group'>
-														<button type='button' class='btn btn-default dropdown-toggle btn-submenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-															Kabel
-														</button>
-														<ul class='dropdown-menu submenu-dropdown'>
-															<li class><a href='#'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>
-															<li><a href='#'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>
-														</ul>
-													</div>
-												</li>
-												<li>
-													<div class='btn-group'>
-														<button type='button' class='btn btn-default dropdown-toggle btn-submenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-															Whiteboard
-														</button>
-														<ul class='dropdown-menu submenu-dropdown'>
-															<li class><a href='#'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>
-															<li><a href='#'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>
-														</ul>
-													</div>
-												</li>
-											</ul>
+												</li>";
+											}											
+											echo"</ul>
 										</div>
 									</div>
 								</div>
@@ -150,16 +82,27 @@
 				<li>
 				<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Software</a>
 					  <ul class='dropdown-menu submenu-dropdown'>
-						<li class><a href='Software.php'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>
-						<li><a href='Software_Neu.php'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>
-					  </ul>
+						<li class><a href='Software.php'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>";
+						if (isset($_SESSION['username']) && $_SESSION['username']== 'Admin') {
+						echo"
+						<li><a href='Software_Neu.php'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>";}
+					echo"</ul>
 				</li>
 				<li><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Lieferanten</a>
 					  <ul class='dropdown-menu submenu-dropdown'>
-						<li class><a href='Lieferanten.php'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>
-						<li><a href='Lieferanten_Neu.php'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>
-					  </ul></li>
-			</ul>
+						<li class><a href='Lieferanten.php'><span class='glyphicon glyphicon-search' aria-hidden='true'></span> Suche</a></li>";
+						if (isset($_SESSION['username']) && $_SESSION['username']== 'Admin') {
+						echo"<li><a href='Lieferanten_Neu.php'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Neu</a></li>";}
+					  echo"</ul>
+				</li>";
+				if (isset($_SESSION['username']) && $_SESSION['username']== 'Admin') {
+				echo"<li><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Admin</a>
+					  <ul class='dropdown-menu submenu-dropdown'>
+						<li><a href='Komponenten_Neu.php'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Komponenten Art</a></li>
+					  </ul>
+					</li>"; 
+				}
+			echo"</ul>
 			<ul class='nav navbar-nav navbar-right'>
 				<!--<li><form action method='post' action=\"logout.php\" ><a  type='submit' name = 'btnLogout' value = 'Logout' >Logout</a> </form></li>	-->
 				<li><a href='logout.php'>Logout</a></li>
