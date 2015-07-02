@@ -22,6 +22,12 @@
 			$db = new getDB();
 			$komponenten = $db->get_komponente_by_search($compArt,$searchkey);
 			$komponentenHeader = $db->get_attribute_by_art($compArt);
+			$komponenten2 = $db->get_KomponentenArt($compArt);
+			$header = mysqli_fetch_assoc($komponenten2);
+			echo "<section id='content'>
+			<div class='row'>
+				<h1 class='page-header' >".$header['ArtBez']."</h1>
+			</div>";		
 	?>
 	<div class="row">
 		<form action="search_komponente.php" method="post">
@@ -42,7 +48,7 @@
 				<?php
 					$headerValid = true;
 					$firstData = false;
-					$anzahlRows = 0;
+					$anzahlRows = 1;
 					echo "<th>Info</th>";
 					while($komponenteHeader = mysqli_fetch_assoc($komponentenHeader)){
 						$anzahlRows++;
@@ -54,12 +60,13 @@
 			<tbody>
 					<?php
 						$currentKomp = "-";
-						$counter=0;
+						$counter=2;
 						$searchSucceded = false;
 						while($komponente = mysqli_fetch_assoc($komponenten) ){
 							$counter++;
 							$searchSucceded = true;
 							if($komponente['Komponent_ID'] != $currentKomp){
+								$counter--;
 								if($currentKomp == "-"){
 									echo "<tr>";
 								}else{
@@ -67,7 +74,7 @@
 										echo "<td>&nbsp;</td>";
 									}
 									echo "</tr><tr>";
-									$counter=0;
+									$counter=2;
 								}
 								$currentKomp = $komponente['Komponent_ID'];
 								echo "<td><a href=\"komponenten_anzeigen.php?komponentenart=".$compArt."&komponentenid=".$komponente['Komponent_ID']."\">".$komponente['Bezeichnung_Komponente']." ".$komponente['Hersteller']."</a></td>";

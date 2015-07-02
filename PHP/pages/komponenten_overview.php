@@ -72,7 +72,10 @@
 									echo "<tr>";
 									echo "<td><a href=\"komponenten_anzeigen.php?komponentenart=".$compArt."&komponentenid=".$firstDS['Komponent_ID']."\">".$firstDS['Bezeichnung_Komponente']." ".$firstDS['Hersteller']."</a></td>";
 									echo "<td>".$firstDS['Wert']." ".$firstDS['Einheit']."</td>";
-									$currentKomp= $komponente['Komponent_ID'];
+									if(2 == $anzahlRows){
+										echo "<td>&nbsp;</td>";
+									}
+									$currentKomp= $firstDS['Komponent_ID'];
 								}
 								
 									if($komponente['Komponent_ID'] != $currentKomp){
@@ -103,7 +106,7 @@
 			</table>
 		</div>
 	</div>
-<?php
+<?php	
 		}
 	} else{
 		echo "Du bist nicht angemeldet! <br> <a href=\"home.php\"><script>window.location = \"login.html\";</script></a>";
