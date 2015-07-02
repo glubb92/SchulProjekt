@@ -43,18 +43,18 @@ class setDB extends connectDB
 						SET Art_ID='".$Art_ID."',Attribut_ID='".$Attribut_ID."'
 						WHERE zuord.Art_ID ='".$ID."'";
 		}
-
 		return $this->query($Query);
 	}
 
 	// Set software details
 	public function set_software($Komp_ID,$Room_ID,$manufacturer,$description,$note,$purchasedate,$warrantyduration)
 	{
-		$Query = "UPDATE tblKomponent as komp
-					SET Raum_ID='".$Raum_ID."',Hersteller='".$manufacturer."',Bezeichnung='".$description."',Notiz='".$note."',Einkaufsdatum='".$purchasedate."',Gewaehrleistungsdauer='".$warrantyduration."'
-					WHERE komp.Komponent_ID = '".$Komp_ID."'";
-	}
-	return $this->query($Query);
+		if($Komp_ID != 0){
+			$Query = "UPDATE tblKomponent as komp
+						SET Raum_ID='".$Raum_ID."',Hersteller='".$manufacturer."',Bezeichnung='".$description."',Notiz='".$note."',Einkaufsdatum='".$purchasedate."',Gewaehrleistungsdauer='".$warrantyduration."'
+						WHERE komp.Komponent_ID = '".$Komp_ID."'";
+			return $this->query($Query);
+		}
 	}
 	
 	// alter component attributes
@@ -75,4 +75,5 @@ class setDB extends connectDB
 		}
 		return $this->query($Query);
 	}
+}
 ?>
