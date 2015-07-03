@@ -284,6 +284,12 @@ class getDB extends connectDB
 			inner join tblkomponentenart tab4 on tab3.art_id = tab4.art_id
 			where tab1.teilkomponenten_id = ".$kompID;
 		return $this->query($Query);	
+	}	
+	
+	//bekomme die anzahl an attributen für eine komponenten art
+	public function get_Count_For_Attributes($artID){
+		$Query = "select count(attribut_id) as anzahl from tblzuordnung_art_attr where art_id = ".$artID;
+		return $this->query($Query);	
 	}
 }
 ?>

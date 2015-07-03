@@ -15,7 +15,8 @@
 			$db = new getDB();
 			
 			$komponenten = $db->get_All_Komponenten_With_Attributes($compArt);
-			
+			$anzahlAttrDS = $db->get_Count_For_Attributes($compArt);
+			$anzahlAttr = mysqli_fetch_assoc($anzahlAttrDS);
 			$komponenten2 = $db->get_KomponentenArt($compArt);
 			$header = mysqli_fetch_assoc($komponenten2);
 			echo "<section id='content'>
@@ -44,17 +45,19 @@
 						$firstData = false;
 						$anzahlRows = 0;
 						echo "<th>Info</th>";
-						while($headerValid){
-							$anzahlRows++;
-							$komponente = mysqli_fetch_assoc($komponenten);
-							if($komponente['Komponent_ID'] != ""){
-								$headerValid = false;
-								$firstData = true;
-								$firstDS = $komponente;
-							}
-							
-							if($headerValid){
-								echo "<th>".$komponente['Bezeichnung']."</th>";
+						if($anzahlAttr['anzahl'] != 0){
+							while($headerValid){
+								$komponente = mysqli_fetch_assoc($komponenten);
+								$anzahlRows++;
+								if($komponente['Komponent_ID'] != ""){
+									$headerValid = false;
+									$firstData = true;
+									$firstDS = $komponente;
+								}
+								
+								if($headerValid){
+									echo "<th>".$komponente['Bezeichnung']."</th>";
+								}
 							}
 						}
 						$anzahlRows--;
