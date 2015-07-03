@@ -83,7 +83,9 @@
 											echo "<tr>";
 										}else{
 											if($counter < $anzahlRows){
-												echo "<td>&nbsp;</td>";
+												for($i = 0;$i<$anzahlRows-$counter;$i++){
+													echo "<td>&nbsp;</td>";
+												}
 											}
 											echo "</tr><tr>";
 											$counter=0;
@@ -94,6 +96,11 @@
 									}else{
 										echo "<td>".$komponente['Wert']." ".$komponente['Einheit']."</td>";
 									}
+							}
+							if($counter++ < $anzahlRows){
+								for($i = 0;$i<$anzahlRows-$counter;$i++){
+									echo "<td>&nbsp;</td>";
+								}
 							}
 							if($firstData){
 								echo "<tr>";

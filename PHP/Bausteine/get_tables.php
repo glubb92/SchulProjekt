@@ -261,5 +261,29 @@ class getDB extends connectDB
 					order by t3.Komponent_ID";
 			return $this->query($Query);
 	}
+	
+	//alle teilkomponenten zu einem komponent
+	public function get_Teilkomponenten($kompID){
+		$Query = "select tab3.bezeichnung as kompBezeichnung,tab4.bezeichnung as artBezeichnung, tab2.Bezeichnung as vorgangBezeichnung , 
+			tab1.datum as Datum ,tab1.teilkomponenten_id as teilkomponenten_id, tab4.art_id as art_id
+			from tblzuordnung_komp_vorgang as tab1 
+			inner join tblvorgangsart tab2 on tab1.vorgang_id = tab2.vorgang_id 
+			inner join tblkomponent tab3 on tab1.teilkomponenten_id = tab3.komponent_id 
+			inner join tblkomponentenart tab4 on tab3.art_id = tab4.art_id
+			where tab1.komponent_id = ".$kompID;
+		return $this->query($Query);	
+	}	
+	
+	//alle parent komponenten zu einem komponent
+	public function get_Parentkomponenten($kompID){
+		$Query = "select tab3.bezeichnung as kompBezeichnung,tab4.bezeichnung as artBezeichnung, tab2.Bezeichnung as vorgangBezeichnung , 
+			tab1.datum as Datum ,tab1.komponent_id as komponenten_id, tab4.art_id as art_id
+			from tblzuordnung_komp_vorgang as tab1 
+			inner join tblvorgangsart tab2 on tab1.vorgang_id = tab2.vorgang_id 
+			inner join tblkomponent tab3 on tab1.komponent_id = tab3.komponent_id 
+			inner join tblkomponentenart tab4 on tab3.art_id = tab4.art_id
+			where tab1.teilkomponenten_id = ".$kompID;
+		return $this->query($Query);	
+	}
 }
 ?>

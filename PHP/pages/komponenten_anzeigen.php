@@ -62,6 +62,60 @@
 						}
 					?>
 						</div>
+					<?php
+						$teilkomponenten = $db->get_Teilkomponenten($compID);
+						if($db->affected_rows()!=0){
+					?>
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="panel panel-default">
+									<div class="panel-heading overview-heading">Teilkomponenten</div>
+									<div class="panel-body">
+										<ul>
+						<?php
+							while($teilkomponente = mysqli_fetch_assoc($teilkomponenten)){
+							
+						?>					<li>
+												<?php if($teilkomponente['kompBezeichnung'] != ''){echo "<a href=\"komponenten_anzeigen.php?komponentenart=".$teilkomponente['art_id']."&komponentenid=".$teilkomponente['teilkomponenten_id']."\" >".$teilkomponente['kompBezeichnung']." - ".$teilkomponente['artBezeichnung']." Vorgang: ".$teilkomponente['vorgangBezeichnung']."</a>";} ?>&nbsp;
+											</li>
+						<?php
+							}
+						?>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<?php
+							}
+						?>
+						<?php
+							$parentkomponenten = $db->get_Parentkomponenten($compID);
+							if($db->affected_rows()!=0){
+						?>
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="panel panel-default">
+										<div class="panel-heading overview-heading">Übergeordnete Komponenten</div>
+										<div class="panel-body">
+											<ul>
+							<?php
+								while($parentkomponente = mysqli_fetch_assoc($parentkomponenten)){
+								
+							?>					<li>
+													<?php if($parentkomponente['kompBezeichnung'] != ''){echo "<a href=\"komponenten_anzeigen.php?komponentenart=".$parentkomponente['art_id']."&komponentenid=".$parentkomponente['komponenten_id']."\" >".$parentkomponente['kompBezeichnung']." - ".$parentkomponente['artBezeichnung']." Vorgang: ".$parentkomponente['vorgangBezeichnung']."</a>";} ?>&nbsp;
+												</li>
+							<?php
+								}
+							?>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<?php
+								}
+							?>
 						<div class="row">
 							<div class="button-row">
 								<?php
